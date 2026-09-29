@@ -8,13 +8,13 @@ image_speed = anim_speed;	// animation speed
 global.life = 3;					// heath of the player
 can_climb = false;			// flag if the player can climb
 climbing = false;			// flag if the player is climbing
-xspeed = 6;					// horizontal speed of the player
-yspeed = -6;				// vertical speed of the player	
+xspeed = 7;					// horizontal speed of the player
+yspeed = -7;				// vertical speed of the player	
 fall = false;				// flag if the player is falling
 grav=0;						// gravity that applies to the player
 gravmax=12;					// terminal velocity when falling
 gravdelta=1.2;				// difference in gravity
-grav_jump = -18;			// jump gravity
+grav_jump = -19;			// jump gravity
 jump=false;					// flag if the player is jumping
 
 // camera that follows the player
