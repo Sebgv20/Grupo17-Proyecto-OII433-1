@@ -44,6 +44,9 @@ function scrProcessPlayer() {
 		move_down = false;
 	}
 
+	// --- NUEVO: Variable para agrupar los inputs de presionar hacia abajo ---
+	var presiona_abajo = (keyboard_check(vk_down)) || (keyboard_check(ord("S"))) || (oGame.button_down_down == true) || (gamepad_button_check(0,gp_padd)) || (move_down);
+
 
 	if( grav<0 ){								// If jumping check above player
 	    sprite_index = sJump;
@@ -62,15 +65,34 @@ function scrProcessPlayer() {
 		c3 = tilemap_get_at_pixel(oGame.map,x,y);										// center
 
 		if( c1>=1 || c2>=1 || c3 >= 1){			// if they are intersecting with a tile
+			
+			// 1. COLISIÓN SÓLIDA NORMAL Y CAJAS (Índices 1 y 3)
 			if((c1 == 1) || (c2 == 1) || (c3 == 1) || (c1 == 3) || (c2 == 3) || (c3 == 3)){
 				// if the tile we are intersecting with cannot be fallen through
 				y = real(y&$ffffffc0);			// move the sprite to the top of the tile
-				sprite_index = sIdle1;	// set the sprite to the idle sprite
+				sprite_index = sIdle1;			// set the sprite to the idle sprite
 				climbing = false;				// stop any climbing
 				jump = false;					// stop any jumping
 				fall = false;					// stop any falling
 			}
-			if((c3 == 2) || (c3 == 2)){			// if we are intersecting with a ladder
+			
+			// --- NUEVO: 2. PLATAFORMA TRASPASABLE (Índice 4) ---
+			else if ((c1 == 4) || (c2 == 4) || (c3 == 4)) {
+				var tope_tile_y = real(y&$ffffffc0);
+				
+				// Usamos 'yprevious' (variable nativa) para saber dónde estaba el jugador 
+				// exactamente antes de que la gravedad de este frame lo empujara hacia abajo
+				if (!presiona_abajo && (yprevious <= tope_tile_y)) {
+					y = tope_tile_y;			
+					sprite_index = sIdle1;	
+					climbing = false;				
+					jump = false;					
+					fall = false;	
+				}
+			}
+			
+			// ESCALERAS (Índice 2)
+			if(c3 == 2){						// if we are intersecting with a ladder (corregí un pequeño error duplicado que tenías aquí)
 				can_climb = true;				// flag that we can climb
 			}
 		} else {								// if we are not intersecting any tiles
@@ -82,7 +104,7 @@ function scrProcessPlayer() {
 	//     MOVING      //
 	/////////////////////
 
-	if((keyboard_check(vk_left)) || (oGame.button_down_left == true) || (gamepad_button_check(0,gp_padl)) || (move_left)){				// moving left collisions
+	if((keyboard_check(vk_left)) || (keyboard_check(ord("A"))) || (oGame.button_down_left == true) || (gamepad_button_check(0,gp_padl)) || (move_left)){				// moving left collisions
 	    dir=-1;									// set the correct direction
 		image_xscale = dir;						// make the sprite face the correct direction
 		climbing = false;						// since we are moving left we are not climbing
@@ -97,7 +119,7 @@ function scrProcessPlayer() {
 	    c1 = tilemap_get_at_pixel(oGame.map,x-(sprite_get_width(sprite_index)/2),y-1);				// left
 	    c3 = tilemap_get_at_pixel(oGame.map,x,y-1);													// center
 	    if( y&$3f>0 ) c2=tilemap_get_at_pixel(oGame.map,x-(sprite_get_width(sprite_index)/2),y+1);	// left below (only check if there is a tile below)
-	    if(c1 == 3) || (c2 == 3){																	// if we are intersecting with a box
+	    if((c1 == 3) || (c2 == 3)){																	// if we are intersecting with a box
 			x = real(x&$ffffffc0)+(sprite_get_width(sprite_index)/2);								// stop the player from moving
 	    }
 		if(c3 == 2){							// if we are intersecting with a ladder
@@ -106,10 +128,17 @@ function scrProcessPlayer() {
 			can_climb = false;					// flag we cant climb
 			image_speed = anim_speed;			// make sure the animations will play at correct speed
 		}
+		/*Teleport al otro extremo de la sala (Borde Izquierdo)		
 		if(x < 0){								// the the player has moved off the edge of the screen
 			x = room_width;						// wrap around to the other side of the screen
+		}*/
+		
+		var half_width = sprite_get_width(sprite_index) / 2;
+		if(x - half_width < 0){					
+			x = half_width;						// Frena al jugador exactamente contra el borde izquierdo
 		}
-	}else if((keyboard_check(vk_right)) || (oGame.button_down_right == true) || (gamepad_button_check(0,gp_padr)) || (move_right)){			// moving right collisions (check with else so that both directions cant be triggered at the same time)
+		
+	}else if((keyboard_check(vk_right)) || (keyboard_check(ord("D"))) || (oGame.button_down_right == true) || (gamepad_button_check(0,gp_padr)) || (move_right)){			// moving right collisions (check with else so that both directions cant be triggered at the same time)
 	    dir=1;									// set the correct direction
 		image_xscale = dir;						// make the sprte face the correct direction 
 		climbing = false;						// set that we are not climbing
@@ -124,7 +153,7 @@ function scrProcessPlayer() {
 	    c1 = tilemap_get_at_pixel(oGame.map,x+(sprite_get_width(sprite_index)/2),y-1);				// right
 		c3 = tilemap_get_at_pixel(oGame.map,x,y-1);													// center
 	    if( y&$3f>0 ) c2=tilemap_get_at_pixel(oGame.map,x+(sprite_get_width(sprite_index)/2),y+1);	// right below (only check if there is a tile below)
-	    if(c1 == 3) || (c2 == 3){																	// if we are intersecting with a box
+	    if((c1 == 3) || (c2 == 3)){																	// if we are intersecting with a box
 				x = real(x&$ffffffc0)+oGame.tilesize-(sprite_get_width(sprite_index)/2);			// stop the player from moving
 	    }
 		if(c3 == 2){							// if we are intersecting with a ladder
@@ -133,8 +162,14 @@ function scrProcessPlayer() {
 			can_climb = false;					// flag we cant climb
 			image_speed = anim_speed;			// make sure the animations will play at correct speed
 		}
+		/*Teleport al otro extremo de la sala (Borde Derecho)
 		if(x > room_width){						// the the player has moved off the edge of the screen
 			x = 0;								// wrap around to the other side of the screen
+		}*/
+		
+		var half_width = sprite_get_width(sprite_index) / 2;
+		if(x + half_width > room_width){		
+			x = room_width - half_width;		// Frena al jugador exactamente contra el borde derecho
 		}
 	
 	} else if(!can_climb){						// if we are not moving left or right check that we are not climbing
@@ -151,12 +186,12 @@ function scrProcessPlayer() {
 	if(can_climb){									// if we can climb
 		c3 = tilemap_get_at_pixel(oGame.map,x,y-1);	// check the bottom center of the sprite
 		if(c3 == 2){								// if it is still on a ladder
-			if((keyboard_check(vk_up)) || (oGame.button_down_up == true) || (gamepad_button_check(0,gp_padu)) || (move_up)){				// and we are pressing up
+			if((keyboard_check(vk_up)) || (keyboard_check(ord("W"))) || (oGame.button_down_up == true) || (gamepad_button_check(0,gp_padu)) || (move_up)){				// and we are pressing up
 				y = y+yspeed;						// move the player up the ladder
 				image_index+=0.3;					// manually control which frame of the animation we are on 
 				climbing = true;					// flag that we are now climbing
 			}
-			if((keyboard_check(vk_down)) || (oGame.button_down_down == true) || (gamepad_button_check(0,gp_padd)) || (move_down)){			// or if we are pressing down
+			if((keyboard_check(vk_down)) || (keyboard_check(ord("S"))) || (oGame.button_down_down == true) || (gamepad_button_check(0,gp_padd)) || (move_down)){			// or if we are pressing down
 				y = y-yspeed;						// move the player down the ladder
 				image_index+=0.3;					// manually control which frame of the animation we are on 
 				climbing = true;					// flag that we are now climbing
@@ -172,10 +207,4 @@ function scrProcessPlayer() {
 			can_climb = false;						// flag that we cannot climb
 		}
 	}
-
-
-
-
-
-
 }

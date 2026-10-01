@@ -13,7 +13,7 @@ if (string(texto_plataforma) != "") {
     // Calculamos el centro basándonos en la posición visual (x, y) del sprite
     // Esto asume que el punto de origen (Origin) de tu sprite está en "Top Left" (0,0)
     var centro_x = x + (sprite_width / 2);
-    var centro_y = y + (sprite_height / 2) + 5;
+    var centro_y = y + (sprite_height / 2);
     
     // Dibujar el contenido de la variable
     draw_text(centro_x, centro_y, string(texto_plataforma));
