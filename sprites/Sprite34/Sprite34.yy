@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":1,
   "parent":{
-    "name":"Grupo7-Proyecto-OII433-1",
-    "path":"Grupo7-Proyecto-OII433-1.yyp",
+    "name":"Grupo17-ProyectoOII433-1",
+    "path":"Grupo17-ProyectoOII433-1.yyp",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

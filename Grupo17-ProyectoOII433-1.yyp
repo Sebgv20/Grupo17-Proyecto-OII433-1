@@ -1,6 +1,6 @@
 {
   "$GMProject":"v1",
-  "%Name":"Grupo7-Proyecto-OII433-1",
+  "%Name":"Grupo17-ProyectoOII433-1",
   "AudioGroups":[
     {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
@@ -39,7 +39,7 @@
   "MetaData":{
     "IDEVersion":"2026.0.0.16",
   },
-  "name":"Grupo7-Proyecto-OII433-1",
+  "name":"Grupo17-ProyectoOII433-1",
   "resources":[
     {"id":{"name":"fTahoma24","path":"fonts/fTahoma24/fTahoma24.yy",},},
     {"id":{"name":"oCartel","path":"objects/oCartel/oCartel.yy",},},
