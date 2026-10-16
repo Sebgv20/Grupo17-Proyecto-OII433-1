@@ -38,6 +38,12 @@ if (!activada) {
             
             // Destruimos la plataforma visual
             instance_destroy();
+			global.life -= 1;
+			with (oCartel) {
+			    if (grupo_id == other.grupo_id) {
+			        puede_interactuar = true;
+			    }
+			}
         }
     }
 }
