@@ -19,6 +19,8 @@
   "height":384,
   "HTile":false,
   "layers":[
+    {"$GMImageLayer":"","%Name":"2bc9f9cf-4466-466b-9eb2-519b597049d7","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"2bc9f9cf-4466-466b-9eb2-519b597049d7","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":false,},
+    {"$GMImageLayer":"","%Name":"94c3803c-6975-432f-a2d4-72b4c7faa2b1","blendMode":0,"displayName":"Layer 2","isLocked":false,"name":"94c3803c-6975-432f-a2d4-72b4c7faa2b1","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
     {"$GMImageLayer":"","%Name":"35f86977-2555-49cc-9b62-fd25afd26fe3","blendMode":0,"displayName":"default","isLocked":false,"name":"35f86977-2555-49cc-9b62-fd25afd26fe3","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"sGrassTiles",

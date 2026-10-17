@@ -60,3 +60,9 @@ window_set_size(ventana_ancho, ventana_alto);
 
 // Centramos la ventana en tu monitor al abrir el juego
 window_center();
+
+// Variables para la pistola y captura (Nivel 2)
+disparando = false;
+rango_pistola = 180;          // Alcance del rayo en píxeles
+fantasma_capturado = "";      // Guarda el string de la fracción capturada ("" = vacío)
+sprite_fantasma_cap = noone;  // Guarda el sprite del fantasma atrapado

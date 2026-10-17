@@ -93,8 +93,8 @@
   ],
   "name":"rLevel1Selector",
   "parent":{
-    "name":"Salas",
-    "path":"folders/Salas.yy",
+    "name":"Nivel_1",
+    "path":"folders/Salas/Nivel_1.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

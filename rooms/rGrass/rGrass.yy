@@ -207,8 +207,8 @@
   ],
   "name":"rGrass",
   "parent":{
-    "name":"Salas",
-    "path":"folders/Salas.yy",
+    "name":"rGrass",
+    "path":"folders/Salas/rGrass.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

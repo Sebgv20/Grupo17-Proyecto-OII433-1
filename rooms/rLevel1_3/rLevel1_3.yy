@@ -96,11 +96,13 @@
     {"name":"inst_172796A0_1_1","path":"rooms/rLevel1_3/rLevel1_3.yy",},
     {"name":"inst_178EB0_1_1","path":"rooms/rLevel1_3/rLevel1_3.yy",},
     {"name":"inst_728459CC1_1","path":"rooms/rLevel1_3/rLevel1_3.yy",},
+    {"name":"inst_2195CB95","path":"rooms/rLevel1_3/rLevel1_3.yy",},
   ],
   "isDnd":false,
   "layers":[
     {"$GMRInstanceLayer":"","%Name":"Player","depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_38A2682A1_1_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_38A2682A1_1_1","objectId":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":160.0,"y":1664.0,},
+        {"$GMRInstance":"v4","%Name":"inst_2195CB95","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_2195CB95","objectId":{"name":"oDoorLvl1_NextLevel","path":"objects/oDoorLvl1_NextLevel/oDoorLvl1_NextLevel.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":3168.0,"y":1216.0,},
       ],"layers":[],"name":"Player","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Control","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_5B73FC63_1_1_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_5B73FC63_1_1_1","objectId":{"name":"oGame","path":"objects/oGame/oGame.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":32.0,"y":32.0,},
@@ -419,8 +421,8 @@
   ],
   "name":"rLevel1_3",
   "parent":{
-    "name":"Salas",
-    "path":"folders/Salas.yy",
+    "name":"Nivel_1",
+    "path":"folders/Salas/Nivel_1.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

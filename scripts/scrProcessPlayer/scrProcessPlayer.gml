@@ -45,7 +45,7 @@ function scrProcessPlayer() {
 	}
 
 	// --- NUEVO: Variable para agrupar los inputs de presionar hacia abajo ---
-	var presiona_abajo = (keyboard_check(vk_down)) || (keyboard_check(ord("S"))) || (oGame.button_down_down == true) || (gamepad_button_check(0,gp_padd)) || (move_down);
+	var presiona_abajo = (keyboard_check(ord("S"))) || (oGame.button_down_down == true) || (gamepad_button_check(0,gp_padd)) || (move_down);
 
 
 	if( grav<0 ){								// If jumping check above player
@@ -91,6 +91,16 @@ function scrProcessPlayer() {
 				}
 			}
 			
+			// Ejemplo dentro de la verificación de colisiones en scrProcessPlayer:
+			if (c1 == 5 || c2 == 5 || c3 == 5) {
+			    // Si el jugador toca el tile 5 (oGhost_Container), puedes hacer que actúe como suelo sólido:
+			    y = real(y & $ffffffc0);
+			    sprite_index = sIdle1;
+			    climbing = false;
+			    jump = false;
+			    fall = false;
+			}
+			
 			// ESCALERAS (Índice 2)
 			if(c3 == 2){						// if we are intersecting with a ladder (corregí un pequeño error duplicado que tenías aquí)
 				can_climb = true;				// flag that we can climb
@@ -104,7 +114,7 @@ function scrProcessPlayer() {
 	//     MOVING      //
 	/////////////////////
 
-	if((keyboard_check(vk_left)) || (keyboard_check(ord("A"))) || (oGame.button_down_left == true) || (gamepad_button_check(0,gp_padl)) || (move_left)){				// moving left collisions
+	if( (keyboard_check(ord("A"))) || (oGame.button_down_left == true) || (gamepad_button_check(0,gp_padl)) || (move_left)){				// moving left collisions
 	    dir=-1;									// set the correct direction
 		image_xscale = dir;						// make the sprite face the correct direction
 		climbing = false;						// since we are moving left we are not climbing
@@ -138,7 +148,7 @@ function scrProcessPlayer() {
 			x = half_width;						// Frena al jugador exactamente contra el borde izquierdo
 		}
 		
-	}else if((keyboard_check(vk_right)) || (keyboard_check(ord("D"))) || (oGame.button_down_right == true) || (gamepad_button_check(0,gp_padr)) || (move_right)){			// moving right collisions (check with else so that both directions cant be triggered at the same time)
+	}else if( (keyboard_check(ord("D"))) || (oGame.button_down_right == true) || (gamepad_button_check(0,gp_padr)) || (move_right)){			// moving right collisions (check with else so that both directions cant be triggered at the same time)
 	    dir=1;									// set the correct direction
 		image_xscale = dir;						// make the sprte face the correct direction 
 		climbing = false;						// set that we are not climbing
@@ -186,12 +196,12 @@ function scrProcessPlayer() {
 	if(can_climb){									// if we can climb
 		c3 = tilemap_get_at_pixel(oGame.map,x,y-1);	// check the bottom center of the sprite
 		if(c3 == 2){								// if it is still on a ladder
-			if((keyboard_check(vk_up)) || (keyboard_check(ord("W"))) || (oGame.button_down_up == true) || (gamepad_button_check(0,gp_padu)) || (move_up)){				// and we are pressing up
+			if( (keyboard_check(ord("W"))) || (oGame.button_down_up == true) || (gamepad_button_check(0,gp_padu)) || (move_up)){				// and we are pressing up
 				y = y+yspeed;						// move the player up the ladder
 				image_index+=0.3;					// manually control which frame of the animation we are on 
 				climbing = true;					// flag that we are now climbing
 			}
-			if((keyboard_check(vk_down)) || (keyboard_check(ord("S"))) || (oGame.button_down_down == true) || (gamepad_button_check(0,gp_padd)) || (move_down)){			// or if we are pressing down
+			if( (keyboard_check(ord("S"))) || (oGame.button_down_down == true) || (gamepad_button_check(0,gp_padd)) || (move_down)){			// or if we are pressing down
 				y = y-yspeed;						// move the player down the ladder
 				image_index+=0.3;					// manually control which frame of the animation we are on 
 				climbing = true;					// flag that we are now climbing
@@ -206,5 +216,106 @@ function scrProcessPlayer() {
 		} else {									// if we are no longer on a ladder
 			can_climb = false;						// flag that we cannot climb
 		}
+	}
+	
+	/////////////////////
+	// PISTOLA NIVEL 2 //
+	/////////////////////
+
+	var boton_disparo = keyboard_check(ord("I")) || mouse_check_button(mb_left);
+	var boton_disparo_presionado = keyboard_check_pressed(ord("I")) || mouse_check_button_pressed(mb_left);
+
+	disparando = boton_disparo;
+
+	if (!variable_instance_exists(id, "longitud_rayo")) {
+	    longitud_rayo = 0;
+	}
+
+	var interactuando_caja = false;
+
+	if (boton_disparo_presionado) {
+	    // Verificamos si estamos sobre la caja (Tile 5 o el objeto directo)
+	    var tile_bajo_jugador = tilemap_get_at_pixel(oGame.map, x, bbox_bottom);
+	    var caja = instance_place(x, y, oGhost_Container);
+	    
+	    if (caja == noone && tile_bajo_jugador == 5) {
+	        caja = instance_nearest(x, y, oGhost_Container);
+	    }
+
+	    if (caja != noone) {
+	        interactuando_caja = true; // Evita disparar el rayo al mismo tiempo que interactúas
+	        
+	        // CASO A: Tenemos fantasma y la caja está vacía -> Lo metemos sin evaluar
+	        if (fantasma_capturado != "" && !caja.ocupado) {
+	            caja.ocupado = true;
+	            caja.fantasma_guardado = fantasma_capturado;
+	            caja.sprite_fantasma = sprite_fantasma_cap;
+	            caja.parpadeo_error = false; // Limpiamos cualquier error previo
+	            
+	            // Vaciamos las manos del jugador
+	            fantasma_capturado = "";
+	            sprite_fantasma_cap = noone;
+	        }
+	        // CASO B: Manos vacías y la caja tiene un fantasma -> Lo recogemos
+	        else if (fantasma_capturado == "" && caja.ocupado) {
+	            fantasma_capturado = caja.fantasma_guardado;
+	            sprite_fantasma_cap = caja.sprite_fantasma;
+	            
+	            // Vaciamos la caja
+	            caja.ocupado = false;
+	            caja.fantasma_guardado = "";
+	            caja.sprite_fantasma = noone;
+	            caja.parpadeo_error = false;
+	        }
+	    }
+	}
+
+	// Buscamos si actualmente YA estamos atrayendo a un fantasma
+	var fantasma_en_proceso = noone;
+	with (oGhost_Catch) {
+	    if (siendo_atraido && jugador_destino == other.id) {
+	        fantasma_en_proceso = id;
+	    }
+	}
+	
+	// EL RAYO DE LA PISTOLA
+	// La condición ahora se mantiene verdadera si estás disparando O si ya hay un fantasma atrapado en el rayo
+	if ((disparando || fantasma_en_proceso != noone) && fantasma_capturado == "" && !interactuando_caja) {
+	    
+	    var x_inicio = x;
+	    var y_arma = y - (sprite_height / 2);
+	    
+	    // FASE 1: BUSCANDO FANTASMA (Solo ocurre si no hemos enganchado a ninguno)
+	    if (fantasma_en_proceso == noone) {
+	        
+	        // El rayo crece hasta el máximo
+	        if (longitud_rayo < rango_pistola) {
+	            longitud_rayo += 15;
+	            if (longitud_rayo > rango_pistola) longitud_rayo = rango_pistola;
+	        }
+	        
+	        var x_fin = x + (dir * longitud_rayo);
+	        
+	        // Disparamos la línea de colisión
+	        var fantasma_hit = collision_line(x_inicio, y_arma, x_fin, y_arma, oGhost_Catch, false, true);
+	        
+	        // Si chocamos con uno, iniciamos la atracción irreversible
+	        if (fantasma_hit != noone && !fantasma_hit.siendo_atraido) {
+	            fantasma_hit.siendo_atraido = true;
+	            fantasma_hit.jugador_destino = id;
+	        }
+	        
+	    } 
+	    // FASE 2: TRAYENDO EL FANTASMA AL JUGADOR
+	    else {
+	        // El rayo se mantiene atado al fantasma independientemente de si sueltas el botón
+	        longitud_rayo = point_distance(x_inicio, y_arma, fantasma_en_proceso.x, fantasma_en_proceso.y);
+	    }
+	    
+	} else {
+	    // Solo desaparece el rayo si soltaste el botón Y no habías atrapado nada
+	    longitud_rayo = 0;
+	    
+	    // (El código de liberación del fantasma que estaba aquí fue eliminado)
 	}
 }

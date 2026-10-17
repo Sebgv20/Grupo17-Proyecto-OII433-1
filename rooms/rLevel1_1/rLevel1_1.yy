@@ -96,6 +96,7 @@
     {"name":"inst_172796A0","path":"rooms/rLevel1_1/rLevel1_1.yy",},
     {"name":"inst_178EB0","path":"rooms/rLevel1_1/rLevel1_1.yy",},
     {"name":"inst_728459CC","path":"rooms/rLevel1_1/rLevel1_1.yy",},
+    {"name":"inst_6918C8AA","path":"rooms/rLevel1_1/rLevel1_1.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -342,6 +343,7 @@
         {"$GMRInstance":"v4","%Name":"inst_172796A0","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_172796A0","objectId":{"name":"oStar","path":"objects/oStar/oStar.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2688.0,"y":576.0,},
         {"$GMRInstance":"v4","%Name":"inst_178EB0","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_178EB0","objectId":{"name":"oStar","path":"objects/oStar/oStar.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1568.0,"y":480.0,},
         {"$GMRInstance":"v4","%Name":"inst_728459CC","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_728459CC","objectId":{"name":"oHeart","path":"objects/oHeart/oHeart.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1152.0,"y":1600.0,},
+        {"$GMRInstance":"v4","%Name":"inst_6918C8AA","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6918C8AA","objectId":{"name":"oDoorLvl1_NextLevel","path":"objects/oDoorLvl1_NextLevel/oDoorLvl1_NextLevel.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":3168.0,"y":1216.0,},
       ],"layers":[],"name":"Bloques","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRAssetLayer":"","%Name":"Hills","assets":[
         {"$GMRSpriteGraphic":"v1","%Name":"graphic_611A5C69","animationSpeed":1.0,"colour":1258232215,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"name":"graphic_611A5C69","resourceType":"GMRSpriteGraphic","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"sBGHills1_sand","path":"sprites/sBGHills1_sand/sBGHills1_sand.yy",},"x":-128.0,"y":800.0,},
@@ -419,8 +421,8 @@
   ],
   "name":"rLevel1_1",
   "parent":{
-    "name":"Salas",
-    "path":"folders/Salas.yy",
+    "name":"Nivel_1",
+    "path":"folders/Salas/Nivel_1.yy",
   },
   "parentRoom":null,
   "physicsSettings":{
