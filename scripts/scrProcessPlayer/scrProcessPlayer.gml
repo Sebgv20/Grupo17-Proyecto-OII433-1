@@ -281,11 +281,18 @@ function scrProcessPlayer() {
 	// EL RAYO DE LA PISTOLA
 	// La condición ahora se mantiene verdadera si estás disparando O si ya hay un fantasma atrapado en el rayo
 	if ((disparando || fantasma_en_proceso != noone) && fantasma_capturado == "" && !interactuando_caja) {
-	    
-	    var x_inicio = x;
-	    var y_arma = y - (sprite_height / 2);
-	    
-	    // FASE 1: BUSCANDO FANTASMA (Solo ocurre si no hemos enganchado a ninguno)
+	    // 2. Calcular coordenadas de la empuñadura de la pistola
+		var offset_x = 30; // 1. Empuja la pistola hacia adelante (Ajusta este número)
+		var offset_y = 10; // 2. Baja/Sube la pistola (Positivo baja, Negativo sube)
+
+		var mano_x = x + (dir * offset_x);
+		var mano_y = (y - (sprite_height / 2)) + offset_y; 
+
+		// 3. Calcular coordenadas de la punta (Donde nace el láser)
+		var largo_arma = 18; // 3. Modifica esto según lo largo que sea el cañón de tu arma
+		var x_punta = mano_x + (dir * largo_arma);
+		var y_punta = mano_y; // 4. Si el cañón está más arriba que la empuñadura, resta píxeles aquí (Ej: mano_y - 4)
+	    // FASE BÚSQUEDA
 	    if (fantasma_en_proceso == noone) {
 	        
 	        // El rayo crece hasta el máximo
@@ -294,10 +301,12 @@ function scrProcessPlayer() {
 	            if (longitud_rayo > rango_pistola) longitud_rayo = rango_pistola;
 	        }
 	        
-	        var x_fin = x + (dir * longitud_rayo);
+	        // ¡AQUÍ ESTABA EL ERROR!
+	        // Reemplazamos 'x' por 'x_inicio' para que alcance la longitud total desde la punta del arma
+	        var x_fin = x_punta + (dir * longitud_rayo);
 	        
-	        // Disparamos la línea de colisión
-	        var fantasma_hit = collision_line(x_inicio, y_arma, x_fin, y_arma, oGhost_Catch, false, true);
+	        // Disparamos la línea de colisión (quitando el +200 que habías agregado)
+	        var fantasma_hit = collision_line(x_punta, y_punta, x_fin, y_punta, oGhost_Catch, false, true);
 	        
 	        // Si chocamos con uno, iniciamos la atracción irreversible
 	        if (fantasma_hit != noone && !fantasma_hit.siendo_atraido) {
@@ -305,11 +314,17 @@ function scrProcessPlayer() {
 	            fantasma_hit.jugador_destino = id;
 	        }
 	        
-	    } 
+	    }
+	    // FASE 2: TRAYENDO EL FANTASMA AL JUGADOR
 	    // FASE 2: TRAYENDO EL FANTASMA AL JUGADOR
 	    else {
-	        // El rayo se mantiene atado al fantasma independientemente de si sueltas el botón
-	        longitud_rayo = point_distance(x_inicio, y_arma, fantasma_en_proceso.x, fantasma_en_proceso.y);
+	        // 1. Calculamos la distancia puramente en el eje X (horizontal).
+	        // Multiplicar por 'dir' nos da la distancia exacta sin importar si miramos a la izq o der.
+	        var distancia_x = (fantasma_en_proceso.x - x_punta) * dir;
+	        
+	        // 2. Contracción absoluta: si el fantasma llega a la punta del arma, la distancia es 0.
+	        // Restamos 15 píxeles para que la luz choque en su "pecho" y no atraviese su sprite.
+	        longitud_rayo = max(0, distancia_x - 15);
 	    }
 	    
 	} else {

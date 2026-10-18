@@ -1,20 +1,24 @@
-// draw the player
+// 1. Dibujar al jugador (siempre primero para que el arma quede por encima)
 draw_self();
 
+// 2. Calcular coordenadas de la empuñadura de la pistola
+var offset_x = 30; // 1. Empuja la pistola hacia adelante (Ajusta este número)
+var offset_y = 10; // 2. Baja/Sube la pistola (Positivo baja, Negativo sube)
 
-/*
-// debug squares - show the corners of the sprite and its origin
-draw_set_colour(c_black);
-draw_rectangle(x-(sprite_get_width(sprite_index)/2)-5,y-sprite_get_height(sprite_index)-1-5,x-(sprite_get_width(sprite_index)/2)+5,y-sprite_get_height(sprite_index)-1+5,false);
-draw_rectangle(x+(sprite_get_width(sprite_index)/2)-5,y-sprite_get_height(sprite_index)-1-5,x+(sprite_get_width(sprite_index)/2)+5,y-sprite_get_height(sprite_index)-1+5,false);
-draw_rectangle(x-(sprite_get_width(sprite_index)/2)-5,y-1-5,x-(sprite_get_width(sprite_index)/2)+5,y-1+5,false);
-draw_rectangle(x+(sprite_get_width(sprite_index)/2)-5,y-1-5,x+(sprite_get_width(sprite_index)/2)+5,y-1+5,false);
+var mano_x = x + (dir * offset_x);
+var mano_y = (y - (sprite_height / 2)) + offset_y; 
 
+// 3. Calcular coordenadas de la punta (Donde nace el láser)
+var largo_arma = 18; // 3. Modifica esto según lo largo que sea el cañón de tu arma
+var x_punta = mano_x + (dir * largo_arma);
+var y_punta = mano_y; // 4. Si el cañón está más arriba que la empuñadura, resta píxeles aquí (Ej: mano_y - 4)
 
-draw_set_colour(c_blue);
-draw_rectangle(x-5,y-5,x+5,y+5,false);
+// 4. Dibujar la pistola independiente (se oculta al escalar)
+if (!climbing) {
+    // Cambia 'sPistola' por el nombre real de tu recurso
+    draw_sprite_ext(sPistola, 0, mano_x, mano_y, dir, 1, 0, c_white, 1);
+}
 
-// */
 
 
 // 2. Si lleva un fantasma capturado, dibujar el número (string) encima del player
@@ -44,29 +48,25 @@ if (fantasma_capturado != "") {
     draw_set_color(c_white);
 }
 
-// 3. Efecto visual del rayo de la pistola (Cono de linterna unificado)
-if (disparando && fantasma_capturado == "" && longitud_rayo > 0) {
-    var x_arma = x + (dir * 20);
-    var y_arma = y - (sprite_height / 2);
-    var x_fin = x + (dir * longitud_rayo); 
+// 6. Efecto visual del rayo de la pistola (Naciendo en la punta)
+if (disparando && fantasma_capturado == "" && longitud_rayo > 0 && !climbing) {
+    // El rayo ahora llega hasta la longitud deseada desde la punta
+    var x_fin = x_punta + (dir * longitud_rayo); 
+    var radio_apertura = longitud_rayo * 0.25;
     
-    var radio_apertura = longitud_rayo * 0.25; 
-    
-    draw_set_alpha(0.4); 
+    draw_set_alpha(0.4);
     draw_set_color(c_aqua);
     
-    // Dibujamos todo el cono y el borde curvo como un solo polígono
+    // Trazamos el abanico poligonal desde la punta de la pistola
     draw_primitive_begin(pr_trianglefan);
-    draw_vertex(x_arma, y_arma); // Punto de origen en la pistola
+    draw_vertex(x_punta, y_punta); // <-- EL CONO NACE AQUÍ
     
-    // Calculamos hacia dónde mira el jugador (0 grados a la derecha, 180 a la izquierda)
     var angulo_base = (dir == 1) ? 0 : 180;
     
-    // Trazamos los vértices del arco redondeado en el extremo
-    for (var a = -90; a <= 90; a += 15) { // "15" es la suavidad del círculo
+    for (var a = -90; a <= 90; a += 15) {
         var angulo_actual = angulo_base + a;
         var vx = x_fin + lengthdir_x(radio_apertura, angulo_actual);
-        var vy = y_arma + lengthdir_y(radio_apertura, angulo_actual);
+        var vy = y_punta + lengthdir_y(radio_apertura, angulo_actual);
         draw_vertex(vx, vy);
     }
     draw_primitive_end();

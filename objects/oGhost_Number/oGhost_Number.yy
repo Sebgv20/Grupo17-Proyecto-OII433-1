@@ -34,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sGhost_1",
-    "path":"sprites/sGhost_1/sGhost_1.yy",
+    "name":"sGhost_Numbered",
+    "path":"sprites/sGhost_Numbered/sGhost_Numbered.yy",
   },
   "spriteMaskId":null,
   "visible":true,

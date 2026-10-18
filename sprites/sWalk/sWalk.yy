@@ -27,6 +27,7 @@
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"9d8a0954-35e0-490c-947e-4476f60f0cbb","blendMode":0,"displayName":"default","isLocked":false,"name":"9d8a0954-35e0-490c-947e-4476f60f0cbb","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"297ad3f7-0a44-4de3-b0de-09487dfcfa7f","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"297ad3f7-0a44-4de3-b0de-09487dfcfa7f","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"sWalk",
   "nineSlice":null,

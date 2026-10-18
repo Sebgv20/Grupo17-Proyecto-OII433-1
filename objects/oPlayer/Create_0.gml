@@ -1,5 +1,6 @@
 /// Init
-dir = -1;					// direction the player is facing
+dir = 1;					// direction the player is facing
+image_xscale = dir;
 spd = 5;					// speed the player will move at
 g = 0.2;					// gravity that applies to the player
 sprite_index = sIdle1;		// animation to play

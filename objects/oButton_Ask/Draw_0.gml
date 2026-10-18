@@ -12,7 +12,7 @@ if (place_meeting(x, y, oPlayer)) {
     draw_set_color(c_white);
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
-    draw_text(x, prompt_y, "W / Arriba");
+    draw_text(x, prompt_y, "W");
     
     draw_set_halign(fa_left);
     draw_set_valign(fa_top);
