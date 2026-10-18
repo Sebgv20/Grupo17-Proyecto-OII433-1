@@ -43,8 +43,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sIdle1",
-    "path":"sprites/sIdle1/sIdle1.yy",
+    "name":"sIdle1_Pistol",
+    "path":"sprites/sIdle1_Pistol/sIdle1_Pistol.yy",
   },
   "spriteMaskId":null,
   "visible":true,

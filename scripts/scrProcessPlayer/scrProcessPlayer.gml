@@ -49,16 +49,17 @@ function scrProcessPlayer() {
 
 
 	if( grav<0 ){								// If jumping check above player
-	    sprite_index = sJump;
+	    sprite_index = sJump_Pistol;
 	} else {									// otherwise, falling so check UNDER the player
 	    if(jump){								// if coming down after jumping display the correct sprite
 	        sprite_index = sJumpFall;
 	    } else if(fall){						// if falling from an edge display the fall sprite
-	        sprite_index = sFall;    
+	        sprite_index = sFall_Pistol;    
 	    } else {								// if not already falling or jumping
 			grav = 0;							// first stop falling (used for ladders)
 			fall = true;						// flag that we are falling
 		}
+		// check the points at the bottom of the player character
 		// check the points at the bottom of the player character
 		c1 = tilemap_get_at_pixel(oGame.map,x-(sprite_get_width(sprite_index)/2),y);	// left
 		c2 = tilemap_get_at_pixel(oGame.map,x+(sprite_get_width(sprite_index)/2),y);	// right
@@ -70,39 +71,29 @@ function scrProcessPlayer() {
 			if((c1 == 1) || (c2 == 1) || (c3 == 1) || (c1 == 3) || (c2 == 3) || (c3 == 3)){
 				// if the tile we are intersecting with cannot be fallen through
 				y = real(y&$ffffffc0);			// move the sprite to the top of the tile
-				sprite_index = sIdle1;			// set the sprite to the idle sprite
+				sprite_index = sIdle1_Pistol;			// set the sprite to the idle sprite
 				climbing = false;				// stop any climbing
 				jump = false;					// stop any jumping
 				fall = false;					// stop any falling
 			}
 			
-			// --- NUEVO: 2. PLATAFORMA TRASPASABLE (Índice 4) ---
-			else if ((c1 == 4) || (c2 == 4) || (c3 == 4)) {
+			// --- 2. PLATAFORMA TRASPASABLE Y CONTENEDOR (Índices 4 y 5) ---
+			else if ((c1 == 4) || (c2 == 4) || (c3 == 4) || (c1 == 5) || (c2 == 5) || (c3 == 5)) {
 				var tope_tile_y = real(y&$ffffffc0);
 				
-				// Usamos 'yprevious' (variable nativa) para saber dónde estaba el jugador 
+				// Usamos 'yprevious' para saber dónde estaba el jugador 
 				// exactamente antes de que la gravedad de este frame lo empujara hacia abajo
 				if (!presiona_abajo && (yprevious <= tope_tile_y)) {
 					y = tope_tile_y;			
-					sprite_index = sIdle1;	
+					sprite_index = sIdle1_Pistol;	
 					climbing = false;				
 					jump = false;					
 					fall = false;	
 				}
 			}
 			
-			// Ejemplo dentro de la verificación de colisiones en scrProcessPlayer:
-			if (c1 == 5 || c2 == 5 || c3 == 5) {
-			    // Si el jugador toca el tile 5 (oGhost_Container), puedes hacer que actúe como suelo sólido:
-			    y = real(y & $ffffffc0);
-			    sprite_index = sIdle1;
-			    climbing = false;
-			    jump = false;
-			    fall = false;
-			}
-			
 			// ESCALERAS (Índice 2)
-			if(c3 == 2){						// if we are intersecting with a ladder (corregí un pequeño error duplicado que tenías aquí)
+			if(c3 == 2){						// if we are intersecting with a ladder
 				can_climb = true;				// flag that we can climb
 			}
 		} else {								// if we are not intersecting any tiles
@@ -120,7 +111,7 @@ function scrProcessPlayer() {
 		climbing = false;						// since we are moving left we are not climbing
 		can_climb = false;						// and we cannot climb
 	    if(!jump && !fall){						// if we are not jumping or falling
-	        sprite_index = sWalk;				// set the sprite to walking
+	        sprite_index = sWalk_Pistol;				// set the sprite to walking
 	    }
 	    x=x-xspeed								// move the player left
 	    c2 = -1;
@@ -154,7 +145,7 @@ function scrProcessPlayer() {
 		climbing = false;						// set that we are not climbing
 		can_climb = false;						// set that we cant climb
 	    if(!jump && !fall){						// if we are not jumping or falling
-	        sprite_index = sWalk;				// set the sprite to walking
+	        sprite_index = sWalk_Pistol;				// set the sprite to walking
 	    }
 	    x=x+xspeed;								// move the player right
 	    c2 = -1;
@@ -184,7 +175,7 @@ function scrProcessPlayer() {
 	
 	} else if(!can_climb){						// if we are not moving left or right check that we are not climbing
 		if(!jump){
-			sprite_index = choose(sIdle1,sIdle2);	// set the sprite to one of the idles (choose at random)
+			sprite_index = choose(sIdle1_Pistol,sIdle2_Pistol);	// set the sprite to one of the idles (choose at random)
 		}
 		image_speed = anim_speed;				// set the speed of the sprite to the correct level
 	}
@@ -221,116 +212,117 @@ function scrProcessPlayer() {
 	/////////////////////
 	// PISTOLA NIVEL 2 //
 	/////////////////////
+	if (string_pos("Level2", room_get_name(room)) > 0) {
+		var boton_disparo = keyboard_check(ord("I")) || mouse_check_button(mb_left);
+		var boton_disparo_presionado = keyboard_check_pressed(ord("I")) || mouse_check_button_pressed(mb_left);
 
-	var boton_disparo = keyboard_check(ord("I")) || mouse_check_button(mb_left);
-	var boton_disparo_presionado = keyboard_check_pressed(ord("I")) || mouse_check_button_pressed(mb_left);
+		disparando = boton_disparo;
 
-	disparando = boton_disparo;
+		if (!variable_instance_exists(id, "longitud_rayo")) {
+		    longitud_rayo = 0;
+		}
 
-	if (!variable_instance_exists(id, "longitud_rayo")) {
-	    longitud_rayo = 0;
-	}
+		var interactuando_caja = false;
 
-	var interactuando_caja = false;
-
-	if (boton_disparo_presionado) {
-	    // Verificamos si estamos sobre la caja (Tile 5 o el objeto directo)
-	    var tile_bajo_jugador = tilemap_get_at_pixel(oGame.map, x, bbox_bottom);
-	    var caja = instance_place(x, y, oGhost_Container);
+		if (boton_disparo_presionado) {
+		    // Verificamos si estamos sobre la caja (Tile 5 o el objeto directo)
+		    var tile_bajo_jugador = tilemap_get_at_pixel(oGame.map, x, bbox_bottom);
+		    var caja = instance_place(x, y, oGhost_Container);
 	    
-	    if (caja == noone && tile_bajo_jugador == 5) {
-	        caja = instance_nearest(x, y, oGhost_Container);
-	    }
+		    if (caja == noone && tile_bajo_jugador == 5) {
+		        caja = instance_nearest(x, y, oGhost_Container);
+		    }
 
-	    if (caja != noone) {
-	        interactuando_caja = true; // Evita disparar el rayo al mismo tiempo que interactúas
+		    if (caja != noone) {
+		        interactuando_caja = true; // Evita disparar el rayo al mismo tiempo que interactúas
 	        
-	        // CASO A: Tenemos fantasma y la caja está vacía -> Lo metemos sin evaluar
-	        if (fantasma_capturado != "" && !caja.ocupado) {
-	            caja.ocupado = true;
-	            caja.fantasma_guardado = fantasma_capturado;
-	            caja.sprite_fantasma = sprite_fantasma_cap;
-	            caja.parpadeo_error = false; // Limpiamos cualquier error previo
+		        // CASO A: Tenemos fantasma y la caja está vacía -> Lo metemos sin evaluar
+		        if (fantasma_capturado != "" && !caja.ocupado) {
+		            caja.ocupado = true;
+		            caja.fantasma_guardado = fantasma_capturado;
+		            caja.sprite_fantasma = sprite_fantasma_cap;
+		            caja.parpadeo_error = false; // Limpiamos cualquier error previo
 	            
-	            // Vaciamos las manos del jugador
-	            fantasma_capturado = "";
-	            sprite_fantasma_cap = noone;
-	        }
-	        // CASO B: Manos vacías y la caja tiene un fantasma -> Lo recogemos
-	        else if (fantasma_capturado == "" && caja.ocupado) {
-	            fantasma_capturado = caja.fantasma_guardado;
-	            sprite_fantasma_cap = caja.sprite_fantasma;
+		            // Vaciamos las manos del jugador
+		            fantasma_capturado = "";
+		            sprite_fantasma_cap = noone;
+		        }
+		        // CASO B: Manos vacías y la caja tiene un fantasma -> Lo recogemos
+		        else if (fantasma_capturado == "" && caja.ocupado) {
+		            fantasma_capturado = caja.fantasma_guardado;
+		            sprite_fantasma_cap = caja.sprite_fantasma;
 	            
-	            // Vaciamos la caja
-	            caja.ocupado = false;
-	            caja.fantasma_guardado = "";
-	            caja.sprite_fantasma = noone;
-	            caja.parpadeo_error = false;
-	        }
-	    }
-	}
+		            // Vaciamos la caja
+		            caja.ocupado = false;
+		            caja.fantasma_guardado = "";
+		            caja.sprite_fantasma = noone;
+		            caja.parpadeo_error = false;
+		        }
+		    }
+		}
 
-	// Buscamos si actualmente YA estamos atrayendo a un fantasma
-	var fantasma_en_proceso = noone;
-	with (oGhost_Catch) {
-	    if (siendo_atraido && jugador_destino == other.id) {
-	        fantasma_en_proceso = id;
-	    }
-	}
+		// Buscamos si actualmente YA estamos atrayendo a un fantasma
+		var fantasma_en_proceso = noone;
+		with (oGhost_Catch) {
+		    if (siendo_atraido && jugador_destino == other.id) {
+		        fantasma_en_proceso = id;
+		    }
+		}
 	
-	// EL RAYO DE LA PISTOLA
-	// La condición ahora se mantiene verdadera si estás disparando O si ya hay un fantasma atrapado en el rayo
-	if ((disparando || fantasma_en_proceso != noone) && fantasma_capturado == "" && !interactuando_caja) {
-	    // 2. Calcular coordenadas de la empuñadura de la pistola
-		var offset_x = 30; // 1. Empuja la pistola hacia adelante (Ajusta este número)
-		var offset_y = 10; // 2. Baja/Sube la pistola (Positivo baja, Negativo sube)
+		// EL RAYO DE LA PISTOLA
+		// La condición ahora se mantiene verdadera si estás disparando O si ya hay un fantasma atrapado en el rayo
+		if ((disparando || fantasma_en_proceso != noone) && fantasma_capturado == "" && !interactuando_caja) {
+		    // 2. Calcular coordenadas de la empuñadura de la pistola
+			var offset_x = 30; // 1. Empuja la pistola hacia adelante (Ajusta este número)
+			var offset_y = 10; // 2. Baja/Sube la pistola (Positivo baja, Negativo sube)
 
-		var mano_x = x + (dir * offset_x);
-		var mano_y = (y - (sprite_height / 2)) + offset_y; 
+			var mano_x = x + (dir * offset_x);
+			var mano_y = (y - (sprite_height / 2)) + offset_y; 
 
-		// 3. Calcular coordenadas de la punta (Donde nace el láser)
-		var largo_arma = 18; // 3. Modifica esto según lo largo que sea el cañón de tu arma
-		var x_punta = mano_x + (dir * largo_arma);
-		var y_punta = mano_y; // 4. Si el cañón está más arriba que la empuñadura, resta píxeles aquí (Ej: mano_y - 4)
-	    // FASE BÚSQUEDA
-	    if (fantasma_en_proceso == noone) {
+			// 3. Calcular coordenadas de la punta (Donde nace el láser)
+			var largo_arma = 18; // 3. Modifica esto según lo largo que sea el cañón de tu arma
+			var x_punta = mano_x + (dir * largo_arma);
+			var y_punta = mano_y; // 4. Si el cañón está más arriba que la empuñadura, resta píxeles aquí (Ej: mano_y - 4)
+		    // FASE BÚSQUEDA
+		    if (fantasma_en_proceso == noone) {
 	        
-	        // El rayo crece hasta el máximo
-	        if (longitud_rayo < rango_pistola) {
-	            longitud_rayo += 15;
-	            if (longitud_rayo > rango_pistola) longitud_rayo = rango_pistola;
-	        }
+		        // El rayo crece hasta el máximo
+		        if (longitud_rayo < rango_pistola) {
+		            longitud_rayo += 15;
+		            if (longitud_rayo > rango_pistola) longitud_rayo = rango_pistola;
+		        }
 	        
-	        // ¡AQUÍ ESTABA EL ERROR!
-	        // Reemplazamos 'x' por 'x_inicio' para que alcance la longitud total desde la punta del arma
-	        var x_fin = x_punta + (dir * longitud_rayo);
+		        // ¡AQUÍ ESTABA EL ERROR!
+		        // Reemplazamos 'x' por 'x_inicio' para que alcance la longitud total desde la punta del arma
+		        var x_fin = x_punta + (dir * longitud_rayo);
 	        
-	        // Disparamos la línea de colisión (quitando el +200 que habías agregado)
-	        var fantasma_hit = collision_line(x_punta, y_punta, x_fin, y_punta, oGhost_Catch, false, true);
+		        // Disparamos la línea de colisión (quitando el +200 que habías agregado)
+		        var fantasma_hit = collision_line(x_punta, y_punta, x_fin, y_punta, oGhost_Catch, false, true);
 	        
-	        // Si chocamos con uno, iniciamos la atracción irreversible
-	        if (fantasma_hit != noone && !fantasma_hit.siendo_atraido) {
-	            fantasma_hit.siendo_atraido = true;
-	            fantasma_hit.jugador_destino = id;
-	        }
+		        // Si chocamos con uno, iniciamos la atracción irreversible
+		        if (fantasma_hit != noone && !fantasma_hit.siendo_atraido) {
+		            fantasma_hit.siendo_atraido = true;
+		            fantasma_hit.jugador_destino = id;
+		        }
 	        
-	    }
-	    // FASE 2: TRAYENDO EL FANTASMA AL JUGADOR
-	    // FASE 2: TRAYENDO EL FANTASMA AL JUGADOR
-	    else {
-	        // 1. Calculamos la distancia puramente en el eje X (horizontal).
-	        // Multiplicar por 'dir' nos da la distancia exacta sin importar si miramos a la izq o der.
-	        var distancia_x = (fantasma_en_proceso.x - x_punta) * dir;
+		    }
+		    // FASE 2: TRAYENDO EL FANTASMA AL JUGADOR
+		    // FASE 2: TRAYENDO EL FANTASMA AL JUGADOR
+		    else {
+		        // 1. Calculamos la distancia puramente en el eje X (horizontal).
+		        // Multiplicar por 'dir' nos da la distancia exacta sin importar si miramos a la izq o der.
+		        var distancia_x = (fantasma_en_proceso.x - x_punta) * dir;
 	        
-	        // 2. Contracción absoluta: si el fantasma llega a la punta del arma, la distancia es 0.
-	        // Restamos 15 píxeles para que la luz choque en su "pecho" y no atraviese su sprite.
-	        longitud_rayo = max(0, distancia_x - 15);
-	    }
+		        // 2. Contracción absoluta: si el fantasma llega a la punta del arma, la distancia es 0.
+		        // Restamos 15 píxeles para que la luz choque en su "pecho" y no atraviese su sprite.
+		        longitud_rayo = max(0, distancia_x - 15);
+		    }
 	    
-	} else {
-	    // Solo desaparece el rayo si soltaste el botón Y no habías atrapado nada
-	    longitud_rayo = 0;
+		} else {
+		    // Solo desaparece el rayo si soltaste el botón Y no habías atrapado nada
+		    longitud_rayo = 0;
 	    
-	    // (El código de liberación del fantasma que estaba aquí fue eliminado)
+		    // (El código de liberación del fantasma que estaba aquí fue eliminado)
+		}
 	}
 }

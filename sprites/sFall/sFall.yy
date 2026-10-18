@@ -20,7 +20,6 @@
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"ca672e29-8052-412a-8e8b-54952d95e2e7","blendMode":0,"displayName":"default","isLocked":false,"name":"ca672e29-8052-412a-8e8b-54952d95e2e7","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
-    {"$GMImageLayer":"","%Name":"42bb682d-84d1-4d35-9016-8f05a7e6e33a","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"42bb682d-84d1-4d35-9016-8f05a7e6e33a","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"sFall",
   "nineSlice":null,
@@ -34,7 +33,7 @@
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"",
+    "%Name":"sFall",
     "autoRecord":true,
     "backdropHeight":1080,
     "backdropImageOpacity":0.5,
@@ -58,7 +57,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"",
+    "name":"sFall",
     "playback":1,
     "playbackSpeed":15.0,
     "playbackSpeedType":0,

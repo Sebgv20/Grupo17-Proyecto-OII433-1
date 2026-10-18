@@ -1,8 +1,9 @@
 /// Init
-dir = -1;					// direction the player is facing
+dir = 1;					// direction the player is facing
+image_xscale = dir;
 spd = 5;					// speed the player will move at
 g = 0.2;					// gravity that applies to the player
-sprite_index = sIdle1;		// animation to play
+sprite_index = sIdle1_Pistol;		// animation to play
 anim_speed = 0.7;			// default speed of the animation
 image_speed = anim_speed;	// animation speed
 global.life = 3;					// heath of the player

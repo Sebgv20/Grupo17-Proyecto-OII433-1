@@ -13,33 +13,47 @@ if (ocupado) {
     var centro_x = bbox_left + (sprite_width / 2);
     var centro_y = bbox_top + (sprite_height / 2);
     
-    var color_dibujo = c_white;
+    // A. Dibujar el fantasma normal siempre (con el 0.5 de alpha que ya tenías)
+    draw_sprite_ext(sprite_fantasma, 0, centro_x-25, centro_y-25, 0.8, 0.8, 0, c_white, 0.5);
     
-    // Si hay un error activo, calculamos el color actual y reducimos el timer
+    // B. Efecto de parpadeo SÓLIDO con GPU Fog (Niebla)
     if (color_Incorrecto > 0) {
-        // Mezcla el blanco y el rojo basándose en el valor de error_fade (de 1.0 a 0.0)
-        color_dibujo = merge_color(c_white, c_red, color_Incorrecto);
+        // Encendemos la niebla forzando un color rojo 100% opaco
+        gpu_set_fog(true, c_red, 0, 0);
+        
+        // Dibujamos la silueta roja encima usando "color_Incorrecto" como su Alpha (funde de 1.0 a 0.0)
+        draw_sprite_ext(sprite_fantasma, 0, centro_x-25, centro_y-25, 0.8, 0.8, 0, c_white, color_Incorrecto);
+        
+        // Apagamos la niebla inmediatamente para no manchar otros objetos del juego
+        gpu_set_fog(false, c_white, 0, 0);
         
         // Reducimos el valor asumiendo 60 FPS (1 segundo en total)
         color_Incorrecto -= (1 / 60); 
     }
-	
-	else if (color_Correcto > 0) {
-        color_dibujo = merge_color(c_white, c_green, color_Correcto);
+    else if (color_Correcto > 0) {
+        // Encendemos la niebla forzando un color verde 100% opaco
+        gpu_set_fog(true, c_green, 0, 0);
+        
+        // Dibujamos la silueta verde encima
+        draw_sprite_ext(sprite_fantasma, 0, centro_x-25, centro_y-25, 0.8, 0.8, 0, c_white, color_Correcto);
+        
+        gpu_set_fog(false, c_white, 0, 0);
+        
         color_Correcto -= (1 / 60);
     }
-	
     
-    // Dibujamos el fantasma con el color normal o rojo si parpadea
-    draw_sprite_ext(sprite_fantasma, 0, centro_x-25, centro_y-25, 0.8, 0.8, 0, color_dibujo, 0.5);
-    
-    // Dibujamos la fracción del fantasma
-    draw_set_font(fTahoma24); // Asegúrate de usar la fuente que corresponda
+    // C. Dibujar la fracción del fantasma
+    draw_set_font(fTahoma24); 
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
-    draw_set_color(c_white); 
-    //draw_text(centro_x, bbox_top - 15, string(fantasma_guardado));
-	draw_text(centro_x, bbox_top+42, string(fantasma_guardado));
+    
+    // Al texto sí le aplicamos merge_color porque el texto base es blanco opaco y se tiñe perfecto
+    var color_texto = c_white;
+    if (color_Incorrecto > 0) color_texto = merge_color(c_white, c_red, color_Incorrecto);
+    else if (color_Correcto > 0) color_texto = merge_color(c_white, c_green, color_Correcto);
+    
+    draw_set_color(color_texto); 
+    draw_text(centro_x, bbox_top+42, string(fantasma_guardado));
     
     // Restaurar valores
     draw_set_halign(fa_left);
