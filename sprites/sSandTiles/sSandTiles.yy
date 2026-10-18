@@ -19,7 +19,7 @@
   "height":384,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"96decb01-69f8-4e3c-a571-777d21788d19","blendMode":0,"displayName":"default","isLocked":false,"name":"96decb01-69f8-4e3c-a571-777d21788d19","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"f6c07025-6a88-499b-bcd6-9996567726c2","blendMode":0,"displayName":"default","isLocked":false,"name":"f6c07025-6a88-499b-bcd6-9996567726c2","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"sSandTiles",
   "nineSlice":null,

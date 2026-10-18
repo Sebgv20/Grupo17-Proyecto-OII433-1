@@ -38,6 +38,9 @@ gamepad_set_axis_deadzone(0,0.2);
 var cam_ancho = 1280; 
 var cam_alto = 720;
 
+//var cam_ancho = 1280; 
+//var cam_alto = 720;
+
 // 2. TAMAÑO DE LA VENTANA (Al compilar)
 // Aumenta estos valores para que la ventana física en tu monitor sea más grande
 var ventana_ancho = 1280; 

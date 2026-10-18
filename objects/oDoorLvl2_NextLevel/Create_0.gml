@@ -1,0 +1,1 @@
+bloqueada = true;

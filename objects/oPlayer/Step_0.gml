@@ -1,9 +1,9 @@
 // player movement is done in the script
 scrProcessPlayer();
 
-
+// Verificamos si el jugador se quedó sin vidas por cualquier motivo general
 if (global.life < 1) {
-	RandomLevel_1();
+    scrGameOver();
 }
 
 // Comprobar si el jugador cayó por debajo del límite de la sala (con un margen de 64 píxeles)
@@ -24,8 +24,7 @@ if (y > room_height + 64) {
         climbing = false;
         
     } else {
-        // Game Over: Reiniciar el nivel si se queda sin vidas
-        // (Al reiniciarse la sala, el evento Create del player volverá a poner global.life en 3)
-        room_restart();
+        // Game Over: Ejecutamos el script centralizado para volver al hub correspondiente
+        scrGameOver();
     }
 }

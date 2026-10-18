@@ -1,28 +1,25 @@
+// Si el jugador está tocando el botón
 if (place_meeting(x, y, oPlayer)) {
     
-    // Si presiona "W" o "Arriba"
     if (keyboard_check_pressed(ord("W"))) {
         
         var errores_encontrados = 0;
-        var cajas_vacias = false;
+        var cajas_correctas = 0;
         
         // Revisamos el estado de TODOS los contenedores del nivel
         with (oGhost_Container) {
             
-            // SOLO EVALUAMOS LAS CAJAS QUE NO SEAN AUXILIARES
             if (!auxiliar) {
                 if (ocupado) {
                     if (fantasma_guardado != fraccion_correcta) {
-                        // Es incorrecta, encendemos el rojo
+                        // Cambiamos error_fade por tu variable
                         color_Incorrecto = 1.0; 
                         errores_encontrados += 1;
                     } else {
-                        // Es correcta, encendemos el verde
+                        // Cambiamos success_fade por tu variable
                         color_Correcto = 1.0; 
+                        cajas_correctas += 1;
                     }
-                } else {
-                    // Hay una caja principal vacía
-                    cajas_vacias = true;
                 }
             }
         }
@@ -31,12 +28,16 @@ if (place_meeting(x, y, oPlayer)) {
         if (errores_encontrados > 0) {
             global.life -= 1; 
             if (global.life <= 0) {
-                room_restart(); 
+                 scrGameOver();
             }
         } 
-        else if (!cajas_vacias && errores_encontrados == 0) {
-            // Si no hay errores y todas las cajas principales están llenas ¡Nivel superado!
-            //room_goto_next(); 
+        // Si no hay errores y alcanzamos la cantidad de cajas exigidas
+        else if (cajas_correctas >= cajas_requeridas) {
+            
+            // Hacemos desaparecer el candado de la puerta
+            if (instance_exists(oDoorLvl2_NextLevel)) {
+                oDoorLvl2_NextLevel.bloqueada = false;
+            }
         }
     }
 }
