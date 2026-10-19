@@ -1,8 +1,8 @@
 {
   "FolderOrderSettings":[
-    {"name":"Nivel_3","order":11,"path":"folders/Salas/Nivel_3.yy",},
     {"name":"Nivel_1","order":8,"path":"folders/Salas/Nivel_1.yy",},
     {"name":"Nivel_2","order":9,"path":"folders/Salas/Nivel_2.yy",},
+    {"name":"Nivel_3","order":11,"path":"folders/Salas/Nivel_3.yy",},
     {"name":"Enemy","order":1,"path":"folders/Sprites/Enemy.yy",},
     {"name":"Level","order":2,"path":"folders/Sprites/Level.yy",},
     {"name":"Pickups","order":3,"path":"folders/Sprites/Pickups.yy",},

@@ -5,7 +5,9 @@ hills = layer_get_all_elements("Hills");								// all the hill sprites
 stars = layer_get_all_elements("Stars");								// all the star sprites
 clouds = layer_get_all_elements("Clouds");								// all the cloud sprites
 global.puntaje = 0;
-
+if (!variable_global_exists("logs_pendientes")) {
+    scrIniciarLogs();
+}
 // change the sprites to sand alternatives
 switch(room){
 	case rSand:															// if we are in the sand room
