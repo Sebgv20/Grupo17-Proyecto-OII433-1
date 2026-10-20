@@ -1,5 +1,23 @@
-// 1. Dibujar al jugador (siempre primero para que el arma quede por encima)
-draw_self();
+// 1. DIBUJAR AL JUGADOR (Con efecto de daño)
+if (!variable_instance_exists(id, "flash_timer")) {
+    flash_timer = 0;
+}
+
+if (flash_timer > 0) {
+    flash_timer -= 1;
+    
+    // Cambiamos a != 0 para que el blanco comience en el bloque impar (3 y 1)
+    if ((flash_timer div 10) % 2 != 0) {
+        gpu_set_fog(true, c_white, 0, 0);  // Activa silueta blanca sólida
+        draw_self();
+        gpu_set_fog(false, c_white, 0, 0); // Apaga la silueta
+    } else {
+        draw_self(); // Dibuja con sus colores normales
+    }
+} else {
+    draw_self(); // Dibuja normal cuando no hay daño
+}
+
 if (string_pos("Level2", room_get_name(room)) > 0) {
 	// 2. Calcular coordenadas de la empuñadura de la pistola
 	var offset_x = 30; // 1. Empuja la pistola hacia adelante (Ajusta este número)

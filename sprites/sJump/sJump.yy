@@ -23,7 +23,7 @@
   ],
   "name":"sJump",
   "nineSlice":null,
-  "origin":9,
+  "origin":7,
   "parent":{
     "name":"Player",
     "path":"folders/Sprites/Player.yy",
@@ -76,7 +76,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":45,
-    "yorigin":125,
+    "yorigin":126,
   },
   "swatchColours":null,
   "swfPrecision":0.0,

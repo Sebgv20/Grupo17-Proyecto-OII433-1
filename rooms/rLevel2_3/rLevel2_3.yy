@@ -38,11 +38,16 @@
     {"name":"inst_58E21E9E1_1","path":"rooms/rLevel2_3/rLevel2_3.yy",},
     {"name":"inst_5A8A4B98_1_1","path":"rooms/rLevel2_3/rLevel2_3.yy",},
     {"name":"inst_64927D49_1_1","path":"rooms/rLevel2_3/rLevel2_3.yy",},
+    {"name":"inst_57CB6035","path":"rooms/rLevel2_3/rLevel2_3.yy",},
   ],
   "isDnd":false,
   "layers":[
     {"$GMRInstanceLayer":"","%Name":"Player","depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_4D65E4D1_1_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4D65E4D1_1_1","objectId":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":224.0,"y":640.0,},
+        {"$GMRInstance":"v4","%Name":"inst_57CB6035","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_57CB6035","objectId":{"name":"oControladorInstrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oControladorInstrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"propertyId":{"name":"nombre_tutorial","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Level_2",},
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oControladorInstrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"propertyId":{"name":"sprite_instrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"resource":{"name":"InstruccionLvl2","path":"sprites/InstruccionLvl2/InstruccionLvl2.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"InstruccionLvl2",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":-64.0,},
       ],"layers":[],"name":"Player","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Control","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_6C1197F2_1_1_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6C1197F2_1_1_1","objectId":{"name":"oGame","path":"objects/oGame/oGame.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},

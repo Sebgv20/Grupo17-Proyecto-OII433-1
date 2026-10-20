@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"soundCorrectAnswer",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":4.0560093,
+  "exportDir":"",
+  "name":"soundCorrectAnswer",
+  "parent":{
+    "name":"Sonidos",
+    "path":"folders/Sonidos.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"soundCorrectAnswer.mp3",
+  "volume":1.0,
+}

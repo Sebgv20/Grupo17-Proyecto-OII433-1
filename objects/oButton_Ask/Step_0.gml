@@ -27,13 +27,14 @@ if (place_meeting(x, y, oPlayer)) {
         // EVALUACIÓN FINAL DEL BOTÓN
         if (errores_encontrados > 0) {
             global.life -= 1; 
+			audioReproduce(soundFail);
             if (global.life <= 0) {
                  scrGameOver();
             }
         } 
         // Si no hay errores y alcanzamos la cantidad de cajas exigidas
         else if (cajas_correctas >= cajas_requeridas) {
-            
+            audioReproduce(soundSuccess);	
             // Hacemos desaparecer el candado de la puerta
             if (instance_exists(oDoorLvl2_NextLevel)) {
                 oDoorLvl2_NextLevel.bloqueada = false;

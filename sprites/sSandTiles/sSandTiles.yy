@@ -19,7 +19,8 @@
   "height":384,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"f6c07025-6a88-499b-bcd6-9996567726c2","blendMode":0,"displayName":"default","isLocked":false,"name":"f6c07025-6a88-499b-bcd6-9996567726c2","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"168b3435-5704-4290-8b0d-328526f36f0b","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"168b3435-5704-4290-8b0d-328526f36f0b","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"bfdae957-1e8f-46d2-b673-553cbf2235b7","blendMode":0,"displayName":"default","isLocked":false,"name":"bfdae957-1e8f-46d2-b673-553cbf2235b7","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"sSandTiles",
   "nineSlice":null,

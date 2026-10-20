@@ -8,8 +8,8 @@
   "name":"oRandLevel_1",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objetos",
-    "path":"folders/Objetos.yy",
+    "name":"_Ctrl",
+    "path":"folders/Objetos/_Ctrl.yy",
   },
   "parentObjectId":null,
   "persistent":false,

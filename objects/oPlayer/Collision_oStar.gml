@@ -1,4 +1,5 @@
 global.puntaje++;						// increase the players score
+audioReproduce(soundGrabStar);
 with(other){					// destroy the pickup
 	instance_destroy();
 }

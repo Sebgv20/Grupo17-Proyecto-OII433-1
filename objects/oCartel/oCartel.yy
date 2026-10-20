@@ -10,8 +10,8 @@
   "name":"oCartel",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objetos",
-    "path":"folders/Objetos.yy",
+    "name":"Interactive",
+    "path":"folders/Objetos/Interactive.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -31,7 +31,7 @@ if (puede_interactuar) {
             // Texto indicando las teclas
             draw_set_alpha(1.0);
             draw_set_color(c_white);
-            draw_text(x, prompt_y, "W / ^");
+            draw_text(x, prompt_y, "W");
             
         } else { 
             var texto = string(mensaje);
