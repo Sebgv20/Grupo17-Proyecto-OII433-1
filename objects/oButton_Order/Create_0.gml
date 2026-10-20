@@ -1,0 +1,1 @@
+timer_incompleto = 0;

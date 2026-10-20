@@ -74,6 +74,7 @@
     {"name":"inst_7FADB88E1_1","path":"rooms/rLevel3_3/rLevel3_3.yy",},
     {"name":"inst_50AE78EA1_1","path":"rooms/rLevel3_3/rLevel3_3.yy",},
     {"name":"inst_134E50BE1_1","path":"rooms/rLevel3_3/rLevel3_3.yy",},
+    {"name":"inst_47A3D7F","path":"rooms/rLevel3_3/rLevel3_3.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -82,6 +83,10 @@
       ],"layers":[],"name":"Player","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Control","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_6C1197F2_2_1_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6C1197F2_2_1_1","objectId":{"name":"oGame","path":"objects/oGame/oGame.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},
+        {"$GMRInstance":"v4","%Name":"inst_47A3D7F","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_47A3D7F","objectId":{"name":"oControladorInstrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oControladorInstrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"propertyId":{"name":"sprite_instrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"resource":{"name":"InstruccionLvl3","path":"sprites/InstruccionLvl3/InstruccionLvl3.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"InstruccionLvl3",},
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oControladorInstrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"propertyId":{"name":"nombre_tutorial","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Level_3",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":64.0,"y":-1408.0,},
       ],"layers":[],"name":"Control","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Ghosts","depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"Ghosts","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Pickups","depth":300,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[

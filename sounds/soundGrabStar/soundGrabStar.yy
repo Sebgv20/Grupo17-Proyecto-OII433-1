@@ -10,7 +10,7 @@
   "compression":0,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":0.07614513,
+  "duration":0.17136054,
   "exportDir":"",
   "name":"soundGrabStar",
   "parent":{
@@ -22,5 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"soundGrabStar.wav",
-  "volume":1.0,
+  "volume":0.2,
 }

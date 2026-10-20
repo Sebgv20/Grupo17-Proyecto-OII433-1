@@ -216,7 +216,7 @@ function scrProcessPlayer() {
 				fall = false;						// make sure that we are not falling
 				sprite_index = sClimb;				// set the sprite to climbing
 				image_speed = 0						// stop the animation from playing as we are controlling that manually
-				x = real(x&$ffffffc0)+oGame.tilesize-(sprite_get_width(sIdle1_Pistol)/2);	// make sure that the player stays on the ladder
+				x = real(x&$ffffffc0) + (oGame.tilesize / 2);
 			}
 		} else {									// if we are no longer on a ladder
 			can_climb = false;						// flag that we cannot climb
