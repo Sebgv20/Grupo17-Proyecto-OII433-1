@@ -27,9 +27,24 @@ function scrGameOver() {
                 vidasRestantes: 0
             };
 
+            // Registrar los reinicios de palancas solamente en el nivel 3
+            if (_nivel == 3) {
+
+                if (variable_global_exists("reinicios_nivel3")) {
+                    _registro.reinicios = global.reinicios_nivel3;
+                } else {
+                    _registro.reinicios = 0;
+                }
+
+                show_debug_message(
+                    "REINICIOS INTENTO FALLIDO NIVEL 3: "
+                    + string(_registro.reinicios)
+                );
+            }
+
             array_push(global.logs_pendientes, _registro);
             array_push(global.logs_historial, _registro);
-			array_push(global.logs_google_pendientes, _registro);
+            array_push(global.logs_google_pendientes, _registro);
 
             show_debug_message(
                 "INTENTO FALLIDO | Nivel: " + string(_nivel)
@@ -44,7 +59,7 @@ function scrGameOver() {
 
             // Exportar los registros
             scrExportarLogs();
-			scrEnviarLogsGoogle();
+            scrEnviarLogsGoogle();
         }
     }
 

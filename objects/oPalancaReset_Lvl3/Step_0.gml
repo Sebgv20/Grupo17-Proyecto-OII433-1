@@ -1,43 +1,72 @@
+
 // Si el jugador está tocando la palanca
 if (place_meeting(x, y, oPlayer)) {
-    
-    // Si presiona "W" o "Arriba"[cite: 3]
+
+    // Si presiona "W" o "Arriba"
     if (keyboard_check_pressed(ord("W")) || keyboard_check_pressed(vk_up)) {
-        
+
         var cajas_movidas = false;
-        
-        // Escaneamos todas las cajas empujables en el nivel[cite: 3]
+
+        // Escaneamos todas las cajas empujables en el nivel
         with (oBoxPushable) {
-            
+
             // Verificamos si la caja pertenece al mismo grupo que esta palanca
             if (grupoCajas == other.grupoCajas) {
-                
-                // Calculamos un margen de error del 5% respecto a sus coordenadas originales
+
+                // Calculamos el margen respecto a su posicion original
                 var margen_x = abs(xstart * 0.1);
                 var margen_y = abs(ystart * 0.1);
-                
-                // Si la caja actual está fuera de su posición inicial superando el margen del 5%
+
+                // Comprobar si la caja fue desplazada
                 if (abs(x - xstart) > margen_x || abs(y - ystart) > margen_y) {
                     cajas_movidas = true;
                 }
-                
-                // Restauramos su posición a las coordenadas originales exactas[cite: 1]
+
+                // Restaurar posicion original
                 x = xstart;
                 y = ystart;
-                
-                // Reseteamos su velocidad vertical para que no reaparezca cayendo[cite: 6]
-                vspd = 0; 
+
+                // Reiniciar velocidad vertical
+                vspd = 0;
             }
         }
-        
+
         // EVALUACIÓN DE VIDAS Y GAME OVER
-        // Solo penalizamos si al menos una caja estaba fuera del margen del 5%[cite: 1]
         if (cajas_movidas) {
-            global.life -= 1; 
+
+            global.life -= 1;
+
+            // Registrar reinicio y vida perdida del nivel 3
+            if (variable_global_exists("nivel_actual_log")) {
+
+                if (global.nivel_actual_log == 3) {
+
+                    // Inicializar contador si no existe
+                    if (!variable_global_exists("reinicios_nivel3")) {
+                        global.reinicios_nivel3 = 0;
+                    }
+
+                    global.reinicios_nivel3 += 1;
+
+                    // Contabilizar vida perdida
+                    if (variable_global_exists("vidas_perdidas_nivel")) {
+                        global.vidas_perdidas_nivel += 1;
+                    }
+
+                    show_debug_message(
+                        "REINICIO NIVEL 3 | Total: "
+                        + string(global.reinicios_nivel3)
+                        + " | Vidas perdidas: "
+                        + string(global.vidas_perdidas_nivel)
+                    );
+                }
+            }
+
             audioReproduce(soundLever);
+
             if (global.life <= 0) {
-                // Usamos el script centralizado para volver al hub selector correcto[cite: 2]
-                scrGameOver(); 
+                // Volver al selector correspondiente
+                scrGameOver();
             }
         }
     }

@@ -6,7 +6,10 @@ g = 0.2;					// gravity that applies to the player
 sprite_index = sIdle1_Pistol;		// animation to play
 anim_speed = 0.7;			// default speed of the animation
 image_speed = anim_speed;	// animation speed
-global.life = 3;					// heath of the player
+// Inicializar las vidas solamente si todavía no existen
+if (!variable_global_exists("life")) {
+    global.life = 3;
+}
 can_climb = false;			// flag if the player can climb
 climbing = false;			// flag if the player is climbing
 xspeed = 7;					// horizontal speed of the player

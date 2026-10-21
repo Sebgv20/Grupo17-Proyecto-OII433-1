@@ -12,6 +12,15 @@ scrIniciarLogs();
 if (room == rLevel1_1 || room == rLevel1_2 || room == rLevel1_3) {
     scrIniciarNivel(1);
 }
+// Iniciar seguimiento del nivel 2
+if (room == rLevel2_1 || room == rLevel2_2 || room == rLevel2_3) {
+    scrIniciarNivel(2);
+}
+
+// Iniciar seguimiento del nivel 3
+if (room == rLevel3_1 || room == rLevel3_2 || room == rLevel3_3) {
+    scrIniciarNivel(3);
+}
 
 switch(room){
 	case rSand:															// if we are in the sand room

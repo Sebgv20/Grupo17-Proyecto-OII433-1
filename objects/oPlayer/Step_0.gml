@@ -11,10 +11,19 @@ if (y > room_height + 64) {
     
     // Pierde una vida
     global.life -= 1;
-	// Registrar la vida perdida
-	if (variable_global_exists("vidas_perdidas_nivel")) {
-		if (global.nivel_actual_log == 1) {
+	// Registrar vida perdida por caida en los niveles 1, 2 y 3
+	if (variable_global_exists("vidas_perdidas_nivel")
+		&& variable_global_exists("nivel_actual_log")) {
+
+		if (global.nivel_actual_log >= 1
+			&& global.nivel_actual_log <= 3) {
+
 			global.vidas_perdidas_nivel += 1;
+
+			show_debug_message(
+				"VIDA PERDIDA POR CAIDA | Total: "
+				+ string(global.vidas_perdidas_nivel)
+			);
 		}
 	}
 

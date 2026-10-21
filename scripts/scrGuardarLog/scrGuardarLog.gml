@@ -153,45 +153,55 @@ function scrVerificarLogs() {
 
 
 // Iniciar el seguimiento de un nivel
+
 function scrIniciarNivel(_nivel) {
 
-    // No reiniciar si este nivel ya está siendo medido
-    
-	if (variable_global_exists("nivel_actual_log")) {
-		if (global.nivel_actual_log == _nivel) {
+    // No reiniciar si este nivel ya esta siendo medido
+    if (variable_global_exists("nivel_actual_log")) {
+        if (global.nivel_actual_log == _nivel) {
 
-			// Asegurar que existan las variables del cronometro
-			if (!variable_global_exists("tiempo_inicio_respuesta")) {
-				global.tiempo_inicio_respuesta = get_timer();
-			}
+            if (!variable_global_exists("tiempo_inicio_respuesta")) {
+                global.tiempo_inicio_respuesta = get_timer();
+            }
 
-			if (!variable_global_exists("suma_tiempos_respuesta")) {
-				global.suma_tiempos_respuesta = 0;
-			}
+            if (!variable_global_exists("suma_tiempos_respuesta")) {
+                global.suma_tiempos_respuesta = 0;
+            }
 
-			if (!variable_global_exists("cantidad_respuestas_correctas")) {
-				global.cantidad_respuestas_correctas = 0;
-			}
+            if (!variable_global_exists("cantidad_respuestas_correctas")) {
+                global.cantidad_respuestas_correctas = 0;
+            }
 
-			return;
-		}
-	}
+            return;
+        }
+    }
 
+    // Asegurar que las vidas esten inicializadas
+    if (!variable_global_exists("life")) {
+        global.life = 3;
+    }
 
+    // Iniciar seguimiento del nivel
     global.nivel_actual_log = _nivel;
     global.tiempo_inicio_nivel = get_timer();
 
     global.vidas_inicio_nivel = global.life;
     global.vidas_perdidas_nivel = 0;
-	global.estrellas_obtenidas_nivel = 0;
-	// Iniciar cronometro de respuestas
-	global.tiempo_inicio_respuesta = get_timer();
+    global.estrellas_obtenidas_nivel = 0;
+	
+	// Reiniciar contador de palancas al comenzar un nuevo intento del nivel 3
+	if (_nivel == 3) {
+		global.reinicios_nivel3 = 0;
+	}
 
-	// Acumular tiempos de respuestas correctas
-	global.suma_tiempos_respuesta = 0;
+    // Cronometro de respuestas
+    global.tiempo_inicio_respuesta = get_timer();
 
-	// Contador de respuestas correctas
-	global.cantidad_respuestas_correctas = 0;
+    // Acumulador de tiempos
+    global.suma_tiempos_respuesta = 0;
+
+    // Contador de respuestas correctas
+    global.cantidad_respuestas_correctas = 0;
 
     show_debug_message(
         "INICIO NIVEL " + string(_nivel)
@@ -199,6 +209,7 @@ function scrIniciarNivel(_nivel) {
         + string(global.vidas_inicio_nivel)
     );
 }
+
 
 
 // Registrar el resumen al finalizar el nivel
@@ -257,6 +268,20 @@ function scrFinalizarNivel(_nivel) {
 		estrellasObtenidas: _estrellas,
 		promedioTiempoRespuesta: _promedio_respuestas
 	};
+	// Agregar cantidad de reinicios solamente para el nivel 3
+	if (_nivel == 3) {
+
+		if (variable_global_exists("reinicios_nivel3")) {
+			_registro.reinicios = global.reinicios_nivel3;
+		} else {
+			_registro.reinicios = 0;
+		}
+
+		show_debug_message(
+			"REINICIOS TOTALES NIVEL 3: "
+			+ string(_registro.reinicios)
+		);
+	}
 
     // Guardar registro
     array_push(global.logs_pendientes, _registro);
