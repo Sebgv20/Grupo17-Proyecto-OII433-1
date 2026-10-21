@@ -10,7 +10,13 @@ if (global.life < 1) {
 if (y > room_height + 64) { 
     
     // Pierde una vida
-    global.life -= 1; 
+    global.life -= 1;
+	// Registrar la vida perdida
+	if (variable_global_exists("vidas_perdidas_nivel")) {
+		if (global.nivel_actual_log == 1) {
+			global.vidas_perdidas_nivel += 1;
+		}
+	}
 
     if (global.life > 0) {
         // Respawn: Volver exactamente a la posición donde empezó el nivel

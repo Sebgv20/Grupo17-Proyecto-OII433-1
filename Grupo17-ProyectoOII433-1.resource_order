@@ -50,6 +50,7 @@
     {"name":"RandomLevel","order":3,"path":"scripts/RandomLevel/RandomLevel.yy",},
     {"name":"scrCheckPress","order":2,"path":"scripts/scrCheckPress/scrCheckPress.yy",},
     {"name":"scrGameOver","order":4,"path":"scripts/scrGameOver/scrGameOver.yy",},
+    {"name":"scrGuardarLog","order":6,"path":"scripts/scrGuardarLog/scrGuardarLog.yy",},
     {"name":"scrProcessPlayer","order":1,"path":"scripts/scrProcessPlayer/scrProcessPlayer.yy",},
     {"name":"musicBG","order":8,"path":"sounds/musicBG/musicBG.yy",},
     {"name":"soundCorrectAnswer","order":3,"path":"sounds/soundCorrectAnswer/soundCorrectAnswer.yy",},

@@ -1,5 +1,16 @@
 global.life--;
 audioReproduce(soundHurt);
+// Registrar vida perdida por fantasma
+if (variable_global_exists("nivel_actual_log")) {
+    if (global.nivel_actual_log >= 1 && global.nivel_actual_log <= 3) {
+        global.vidas_perdidas_nivel += 1;
+
+        show_debug_message(
+            "VIDA PERDIDA POR FANTASMA | Total: "
+            + string(global.vidas_perdidas_nivel)
+        );
+    }
+}
 
 // --- EFECTO RECOIL (Retroceso) ---
 var dir_empuje = sign(x - other.x);

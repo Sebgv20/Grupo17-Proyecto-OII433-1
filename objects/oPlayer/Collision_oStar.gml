@@ -1,4 +1,15 @@
 global.puntaje++;						// increase the players score
+// Registrar estrella recogida para los logs
+if (variable_global_exists("estrellas_obtenidas_nivel")) {
+    if (global.nivel_actual_log == 1) {
+        global.estrellas_obtenidas_nivel += 1;
+
+        show_debug_message(
+            "ESTRELLA RECOGIDA | Total nivel: "
+            + string(global.estrellas_obtenidas_nivel)
+        );
+    }
+}
 audioReproduce(soundGrabStar);
 with(other){					// destroy the pickup
 	instance_destroy();

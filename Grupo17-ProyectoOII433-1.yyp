@@ -93,6 +93,7 @@
     {"id":{"name":"RandomLevel","path":"scripts/RandomLevel/RandomLevel.yy",},},
     {"id":{"name":"scrCheckPress","path":"scripts/scrCheckPress/scrCheckPress.yy",},},
     {"id":{"name":"scrGameOver","path":"scripts/scrGameOver/scrGameOver.yy",},},
+    {"id":{"name":"scrGuardarLog","path":"scripts/scrGuardarLog/scrGuardarLog.yy",},},
     {"id":{"name":"scrProcessGhosts","path":"scripts/scrProcessGhosts/scrProcessGhosts.yy",},},
     {"id":{"name":"scrProcessPlayer","path":"scripts/scrProcessPlayer/scrProcessPlayer.yy",},},
     {"id":{"name":"musicBG","path":"sounds/musicBG/musicBG.yy",},},

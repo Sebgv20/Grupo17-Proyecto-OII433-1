@@ -3,12 +3,16 @@ tilesize = 64;															// size of tiles
 map = layer_tilemap_get_id("Collisions");								// this will be the layer we use for collisions
 hills = layer_get_all_elements("Hills");								// all the hill sprites
 stars = layer_get_all_elements("Stars");								// all the star sprites
-clouds = layer_get_all_elements("Clouds");								// all the cloud sprites
+clouds = layer_get_all_elements("Clouds");	
+
+// prueba para los logs 
 global.puntaje = 0;
-/*if (!variable_global_exists("logs_pendientes")) {
-    scrIniciarLogs();
-}*/
-// change the sprites to sand alternatives
+scrIniciarLogs();
+// Iniciar cronometro solamente en salas jugables del nivel 1
+if (room == rLevel1_1 || room == rLevel1_2 || room == rLevel1_3) {
+    scrIniciarNivel(1);
+}
+
 switch(room){
 	case rSand:															// if we are in the sand room
 		for(i=0;i<array_length(hills);i++){							// loop through all the hill sprites
