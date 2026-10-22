@@ -17,7 +17,10 @@ if (mouse_check_button_pressed(mb_left)) {
     // Verificamos si las coordenadas del ratón están dentro de los 40x40 píxeles de la "X"
     if (mx >= boton_x && mx <= boton_x + 40 && my >= boton_y && my <= boton_y + 40) {
         
-        // Destruye el controlador, eliminando el cartel de la pantalla permanentemente
+        // Limpiamos los inputs del mouse/teclado para evitar dobles clics accidentales en la misma fracción de segundo
+        io_clear(); 
+        
+        // Destruye el controlador
         instance_destroy();
     }
 }

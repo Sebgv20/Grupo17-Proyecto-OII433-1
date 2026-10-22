@@ -75,6 +75,7 @@
     {"name":"inst_50AE78EA1","path":"rooms/rLevel3_2/rLevel3_2.yy",},
     {"name":"inst_134E50BE1","path":"rooms/rLevel3_2/rLevel3_2.yy",},
     {"name":"inst_30419E4A","path":"rooms/rLevel3_2/rLevel3_2.yy",},
+    {"name":"inst_46EB2C92","path":"rooms/rLevel3_2/rLevel3_2.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -87,6 +88,7 @@
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oControladorInstrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"propertyId":{"name":"sprite_instrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"resource":{"name":"InstruccionLvl3","path":"sprites/InstruccionLvl3/InstruccionLvl3.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"InstruccionLvl3",},
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oControladorInstrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"propertyId":{"name":"nombre_tutorial","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Level_3",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":64.0,"y":-1408.0,},
+        {"$GMRInstance":"v4","%Name":"inst_46EB2C92","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_46EB2C92","objectId":{"name":"oButton_Pause","path":"objects/oButton_Pause/oButton_Pause.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1440.0,"y":544.0,},
       ],"layers":[],"name":"Control","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Ghosts","depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"Ghosts","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Pickups","depth":300,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
@@ -153,7 +155,7 @@
           1,64,-5,-2147483648,1,64,-9,63,1,64,-5,-2147483648,1,64,-4,63,1,64,-5,-2147483648,4,63,64,63,63,-4,-2147483648,
           57,18,4,5,6,7,8,20,21,18,19,20,21,18,19,20,21,18,4,5,6,7,8,20,4,5,6,7,8,18,19,20,21,18,19,20,21,18,19,
           20,4,5,6,7,8,18,19,20,21,18,19,4,5,6,7,8,21,62,-6,-2147483648,
-        ],"TileDataFormat":1,},"tilesetId":{"name":"tSand_1","path":"tilesets/tSand_1/tSand_1.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+        ],"TileDataFormat":1,},"tilesetId":{"name":"tFactory","path":"tilesets/tFactory/tFactory.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"$GMRAssetLayer":"","%Name":"Details","assets":[
         {"$GMRSpriteGraphic":"v1","%Name":"graphic_65848D23_1","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"name":"graphic_65848D23_1","resourceType":"GMRSpriteGraphic","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"TuercaIzq","path":"sprites/TuercaIzq/TuercaIzq.yy",},"x":320.0,"y":896.0,},
         {"$GMRSpriteGraphic":"v1","%Name":"graphic_6C6B0BAE1","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"name":"graphic_6C6B0BAE1","resourceType":"GMRSpriteGraphic","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"TuercaIzq","path":"sprites/TuercaIzq/TuercaIzq.yy",},"x":256.0,"y":896.0,},

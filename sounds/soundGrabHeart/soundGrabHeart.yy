@@ -22,5 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"soundGrabHeart.ogg",
-  "volume":0.2,
+  "volume":0.7,
 }

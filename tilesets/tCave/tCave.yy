@@ -1,13 +1,13 @@
 {
   "$GMTileSet":"v1",
-  "%Name":"tSand_1",
+  "%Name":"tCave",
   "autoTileSets":[],
   "macroPageTiles":{
     "SerialiseHeight":0,
     "SerialiseWidth":0,
     "TileSerialiseData":[],
   },
-  "name":"tSand_1",
+  "name":"tCave",
   "out_columns":9,
   "out_tilehborder":2,
   "out_tilevborder":2,

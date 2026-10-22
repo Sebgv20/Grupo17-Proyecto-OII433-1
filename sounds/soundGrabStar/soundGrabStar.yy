@@ -22,5 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"soundGrabStar.wav",
-  "volume":0.2,
+  "volume":0.5,
 }

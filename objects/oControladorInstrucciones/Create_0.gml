@@ -1,3 +1,4 @@
+depth = -9999;
 // 1. Si la memoria global de tutoriales no existe, la creamos vacía
 if (!variable_global_exists("tutoriales_vistos")) {
     global.tutoriales_vistos = {};

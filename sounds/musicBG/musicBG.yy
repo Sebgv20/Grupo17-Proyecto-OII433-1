@@ -22,5 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"musicBG.mp3",
-  "volume":0.01,
+  "volume":0.4,
 }

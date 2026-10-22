@@ -38,19 +38,21 @@
     {"name":"inst_58E21E9E1_1","path":"rooms/rLevel2_3/rLevel2_3.yy",},
     {"name":"inst_5A8A4B98_1_1","path":"rooms/rLevel2_3/rLevel2_3.yy",},
     {"name":"inst_64927D49_1_1","path":"rooms/rLevel2_3/rLevel2_3.yy",},
+    {"name":"inst_609DC029","path":"rooms/rLevel2_3/rLevel2_3.yy",},
     {"name":"inst_57CB6035","path":"rooms/rLevel2_3/rLevel2_3.yy",},
   ],
   "isDnd":false,
   "layers":[
     {"$GMRInstanceLayer":"","%Name":"Player","depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_4D65E4D1_1_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4D65E4D1_1_1","objectId":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":224.0,"y":640.0,},
+      ],"layers":[],"name":"Player","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
+    {"$GMRInstanceLayer":"","%Name":"Control","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
+        {"$GMRInstance":"v4","%Name":"inst_6C1197F2_1_1_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6C1197F2_1_1_1","objectId":{"name":"oGame","path":"objects/oGame/oGame.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},
+        {"$GMRInstance":"v4","%Name":"inst_609DC029","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_609DC029","objectId":{"name":"oButton_Pause","path":"objects/oButton_Pause/oButton_Pause.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":-128.0,},
         {"$GMRInstance":"v4","%Name":"inst_57CB6035","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_57CB6035","objectId":{"name":"oControladorInstrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oControladorInstrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"propertyId":{"name":"nombre_tutorial","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Level_2",},
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oControladorInstrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"propertyId":{"name":"sprite_instrucciones","path":"objects/oControladorInstrucciones/oControladorInstrucciones.yy",},"resource":{"name":"InstruccionLvl2","path":"sprites/InstruccionLvl2/InstruccionLvl2.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"InstruccionLvl2",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":-64.0,},
-      ],"layers":[],"name":"Player","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
-    {"$GMRInstanceLayer":"","%Name":"Control","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
-        {"$GMRInstance":"v4","%Name":"inst_6C1197F2_1_1_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6C1197F2_1_1_1","objectId":{"name":"oGame","path":"objects/oGame/oGame.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},
       ],"layers":[],"name":"Control","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Ghosts","depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_14186DCB1_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_14186DCB1_1","objectId":{"name":"oGhost_Catch","path":"objects/oGhost_Catch/oGhost_Catch.yy",},"properties":[
@@ -113,7 +115,7 @@
           -20,0,-5,-2147483648,1,0,-13,-2147483648,-2,0,-15,-2147483648,1,0,-6,-2147483648,-21,0,-4,-2147483648,
           1,0,-13,-2147483648,-2,0,-15,-2147483648,1,0,-6,-2147483648,-9,0,-55,-2147483648,2,0,78,-11,79,1,80,
           -111,-2147483648,
-        ],"TileDataFormat":1,},"tilesetId":{"name":"tSand","path":"tilesets/tSand/tSand.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+        ],"TileDataFormat":1,},"tilesetId":{"name":"tCave","path":"tilesets/tCave/tCave.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"$GMRTileLayer":"","%Name":"GTiles","depth":600,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"GTiles","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":17,"SerialiseWidth":63,"TileCompressedData":[
           -189,-2147483648,3,11,12,13,-60,-2147483648,3,25,26,27,-3,-2147483648,-2,77,-3,-2147483648,1,0,-6,77,
           3,76,22,27,-32,-2147483648,-3,77,-18,-2147483648,-7,0,1,76,-16,-2147483648,-4,77,-9,-2147483648,-2,77,
@@ -132,7 +134,7 @@
           -2147483648,-2147483648,75,-6,-2147483648,3,22,26,27,-3,-2147483648,4,22,25,26,27,-3,-2147483648,16,
           18,19,20,18,19,20,18,19,20,18,19,20,18,19,20,27,-14,-2147483648,2,5,6,-11,-2147483648,3,11,12,13,-17,
           -2147483648,
-        ],"TileDataFormat":1,},"tilesetId":{"name":"tSand","path":"tilesets/tSand/tSand.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+        ],"TileDataFormat":1,},"tilesetId":{"name":"tCave","path":"tilesets/tCave/tCave.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"$GMRInstanceLayer":"","%Name":"Bloques","depth":700,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_30B2F873_1_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_30B2F873_1_1","objectId":{"name":"oGhost_Container","path":"objects/oGhost_Container/oGhost_Container.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oGhost_Container","path":"objects/oGhost_Container/oGhost_Container.yy",},"propertyId":{"name":"fraccion_correcta","path":"objects/oGhost_Container/oGhost_Container.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"1/5\"",},
