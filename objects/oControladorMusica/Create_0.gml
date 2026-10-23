@@ -1,6 +1,5 @@
-// Comprobamos si ya existe otro oControladorMusica en el juego
+// Para que no haya más de una instancia
 if (instance_number(oControladorMusica) > 1) {
-    // Si ya existe otro, nos destruimos para no crear clones
     instance_destroy();
-    exit; // Detiene el resto del código
+    exit;
 }
