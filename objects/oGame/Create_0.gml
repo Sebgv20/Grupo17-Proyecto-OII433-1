@@ -7,6 +7,7 @@ clouds = layer_get_all_elements("Clouds");
 
 // prueba para los logs 
 global.puntaje = 0;
+global.life = 3;
 scrIniciarLogs();
 // Iniciar cronometro solamente en salas jugables del nivel 1
 if (room == rLevel1_1 || room == rLevel1_2 || room == rLevel1_3) {
