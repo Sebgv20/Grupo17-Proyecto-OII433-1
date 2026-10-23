@@ -1,6 +1,8 @@
 
 global.puntaje++; // increase the players score
 
+global.estrellas += 1;
+
 // Registrar estrella recogida para los logs
 if (variable_global_exists("estrellas_obtenidas_nivel")
     && variable_global_exists("nivel_actual_log")) {

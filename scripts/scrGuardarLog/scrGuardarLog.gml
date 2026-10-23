@@ -49,6 +49,12 @@ function scrGuardarLog(_nivel, _pregunta, _alternativas,
                       _respuesta, _correcta, _tiempo) {
 
     scrIniciarLogs();
+	
+	if (_correcta == true || _correcta == 1 || string_lower(string(_correcta)) == "true" || string_lower(string(_correcta)) == "correcta") {
+        global.aciertos += 1;
+    } else {
+        global.fallos += 1;
+    }
 
     var _registro = {
         timestamp: date_datetime_string(date_current_datetime()),
@@ -302,6 +308,29 @@ function scrFinalizarNivel(_nivel) {
 
     // Evitar registrar dos veces el mismo final
     global.nivel_actual_log = -1;
+	
+	// ========================================================
+    // SI ES EL FIN DEL NIVEL 3 -> GUARDAR RANKING Y MOSTRAR SALA
+    // ========================================================
+    if (_nivel == 3) {
+        global.timer_activo = false; // Detener cronómetro
+        calcular_puntaje_final();     // Calcular puntaje final de la partida
+        
+        // Usar rut_jugador o idJugador como identificador
+        var id_final = global.rut_jugador;
+        if (id_final == "Estudiante_01" && variable_global_exists("idJugador")) {
+            id_final = global.idJugador;
+        }
+        
+        // Guardar partida en ranking.json local con los 4 parámetros:
+        guardar_partida_ranking(global.rut_jugador, global.nombre_jugador, global.puntos, global.tiempo_total);
+        
+        // Exportar los logs pendientes a archivo local antes de ir a ranking
+        scrExportarLogs();
+
+        // Ir a la sala del ranking
+        room_goto(rRanking);
+	}
 }
 
 function scrEnviarLogsGoogle() {

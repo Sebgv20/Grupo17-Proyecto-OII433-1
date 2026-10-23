@@ -44,6 +44,39 @@ switch(room){
 		break;
 }
 
+// ==========================================
+// REGISTRO INICIAL DEL ESTUDIANTE (LOGIN)
+// ==========================================
+if (!variable_global_exists("rut_jugador")) {
+    var rut_ingresado = "";
+    while (string_trim(rut_ingresado) == "") {
+        rut_ingresado = get_string("Bienvenido(a) a Learn2Math\n\nIngresa tu RUT sin puntos y con guion (ej: 20123456-7):", "");
+    }
+    global.rut_jugador = string_trim(rut_ingresado);
+}
+
+if (!variable_global_exists("nombre_jugador")) {
+    var nom_ingresado = "";
+    while (string_trim(nom_ingresado) == "") {
+        nom_ingresado = get_string("Ingresa tu Nombre o Alias para la Tabla de Clasificación:", "");
+    }
+    global.nombre_jugador = string_trim(nom_ingresado);
+}
+
+// Sincronizar con el idJugador de telemetría de logs
+global.idJugador = global.rut_jugador;
+
+// Variables de interacción y gamificación (se inicializan una sola vez)
+if (!variable_global_exists("estrellas"))     global.estrellas = 0;
+if (!variable_global_exists("aciertos"))      global.aciertos = 0;
+if (!variable_global_exists("fallos"))        global.fallos = 0;
+if (!variable_global_exists("puntos"))        global.puntos = 0;
+if (!variable_global_exists("life"))          global.life = 3; // Corazones del juego
+
+// Cronómetro general acumulativo
+if (!variable_global_exists("tiempo_total"))  global.tiempo_total = 0; // En segundos
+if (!variable_global_exists("timer_activo"))  global.timer_activo = true;
+
 // on screen controls
 button_pressed = false;													// flag to see if any button is being pressed
 button_down_left = false;												// if the left button is pressed

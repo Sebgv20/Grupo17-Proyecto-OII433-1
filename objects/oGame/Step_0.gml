@@ -27,3 +27,7 @@ if(button_pressed == true){																	// if any button has been pressed
 } else {
 	button_a += (0 - button_a) * 0.1;														// fade out the buttons
 }
+
+if (global.timer_activo) {
+    global.tiempo_total += delta_time / 1000000;
+}
