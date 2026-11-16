@@ -1,19 +1,45 @@
 var mx = device_mouse_x_to_gui(0);
 var my = device_mouse_y_to_gui(0);
 var clic = mouse_check_button_pressed(mb_left);
-var presiono_esc = keyboard_check_pressed(vk_escape); // <-- Detección de la tecla ESC
+var presiono_esc = keyboard_check_pressed(vk_escape);
 
+// Dimensiones cuadradas de los botones de la esquina superior derecha
 var p_ancho = 50; 
-var p_alto = 50;
+var p_alto  = 50;
 
+// Botón Pausa (derecha, margen de 20 px)
 var p_x = display_get_gui_width() - p_ancho - 20; 
 var p_y = 20;
 
+// Botón Tutorial "?" (10 px a la izquierda del botón de pausa)
+var q_ancho = 50;
+var q_alto  = 50;
+var q_x = p_x - q_ancho - 10;
+var q_y = 20;
+
+// 0. CLIC EN EL BOTÓN "?" (Reabrir tutorial del nivel actual)
+var clic_tutorial = (clic && mx >= q_x && mx <= q_x + q_ancho && my >= q_y && my <= q_y + q_alto);
+
+if (clic_tutorial && !pausado && !instance_exists(oControladorInstrucciones)) {
+    instance_create_depth(0, 0, -9999, oControladorInstrucciones);
+}
+
+// 0. CLIC EN EL BOTÓN "?" (Reabrir tutorial del nivel actual)
+var clic_tutorial = (clic && mx >= q_x && mx <= q_x + q_ancho && my >= q_y && my <= q_y + q_alto);
+
+if (clic_tutorial && !pausado && !instance_exists(oControladorInstrucciones)) {
+    instance_create_depth(0, 0, -9999, oControladorInstrucciones, {
+        forzar_tutorial: true
+    });
+}
+
+// 1. CLIC EN EL BOTÓN DE PAUSA O TECLA ESC (Abrir o cerrar pausa)
 var clic_icono = (clic && mx >= p_x && mx <= p_x + p_ancho && my >= p_y && my <= p_y + p_alto);
+
 if (clic_icono || presiono_esc) {
-    if (!instance_exists(oControladorInstrucciones)) {        
+    // Solo permitimos pausar si el tutorial no está abierto
+    if (!instance_exists(oControladorInstrucciones)) {
         pausado = !pausado;
-        
         if (pausado) {
             instance_deactivate_all(true); 
         } else {

@@ -4,9 +4,24 @@ function calcular_puntaje_final() {
     if (variable_global_exists("life")) {
         vidas_bonus = max(0, (global.life * 50) - 50);
     }
-    
-    var pts = (global.estrellas * 50) + (global.aciertos * 50) - (global.fallos * 25) + vidas_bonus;
-    global.puntos = max(0, pts);
+
+    // Bono de rapidez: hasta +600 pts si completa los 3 niveles bajo 20 min (1200 s)
+    var tiempo_bonus = 0;
+    if (variable_global_exists("tiempo_total")) {
+        tiempo_bonus = max(0, round((1200 - global.tiempo_total) * 0.5));
+    }
+
+    var muertes_penalizacion = variable_global_exists("muertes") ? (global.muertes * 75) : 0;
+
+    var pts = (global.estrellas * 50)
+            + (global.aciertos * 50)
+            - (global.fallos * 25)
+            - muertes_penalizacion
+            + vidas_bonus
+            + tiempo_bonus;
+
+    // Piso mínimo de 300 pts por completar los 3 niveles
+    global.puntos = max(300, pts);
     return global.puntos;
 }
 
@@ -51,6 +66,7 @@ function guardar_partida_ranking(_rut, _nombre, _puntos, _tiempo) {
     if (index_existente != -1) {
         // El alumno ya tenía partida: solo actualizamos si este intento es MEJOR
         var reg_previo = lista_ranking[index_existente];
+		reg_previo.nombre = _nombre;
         var es_mejor = false;
 
         if (_puntos > reg_previo.puntos) {
@@ -60,7 +76,6 @@ function guardar_partida_ranking(_rut, _nombre, _puntos, _tiempo) {
         }
 
         if (es_mejor) {
-            reg_previo.nombre = _nombre;
             reg_previo.puntos = _puntos;
             reg_previo.tiempo = t_redondeado;
         }

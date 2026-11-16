@@ -14,7 +14,7 @@ draw_set_halign(fa_center);
 draw_set_valign(fa_top);
 
 draw_set_color(c_yellow);
-draw_text(cx, 30, "¡FELICITACIONES, COMPLETAS EL JUEGO!");
+draw_text(cx, 30, "FELICITACIONES, COMPLETASTE EL JUEGO!");
 
 draw_set_color(c_white);
 var tiempo_seg = floor(global.tiempo_total);
@@ -26,14 +26,19 @@ draw_text(cx, 75, "Estudiante: " + string(global.nombre_jugador) + " (" + string
 
 // 3. Título de la tabla
 draw_set_color(c_aqua);
-draw_text(cx, 135, "=== TABLA DE CLASIFICACIÓN (TOP 5) ===");
+draw_text(cx, 130, "=== TABLA DE CLASIFICACION (TOP 5) ===");
+
+if (cargando_global) {
+    draw_set_color(c_gray);
+    draw_text(cx, 160, "(Sincronizando ranking global...)");
+}
 
 // Configuración de columnas
 var col_pos  = cx - 300;
 var col_nom  = cx - 200;
 var col_pts  = cx + 80;
 var col_time = cx + 220;
-var start_y  = 185;
+var start_y  = 195;
 
 draw_set_halign(fa_left);
 draw_set_color(c_gray);
@@ -56,7 +61,6 @@ for (var i = 0; i < total_top; i++) {
     var r_sec = string(reg.tiempo mod 60);
     if (string_length(r_sec) < 2) r_sec = "0" + r_sec;
 
-    // Resaltar en amarillo si es el alumno actual
     if (reg.rut == global.rut_jugador) {
         draw_set_color(c_yellow);
     } else {
@@ -71,8 +75,8 @@ for (var i = 0; i < total_top; i++) {
     fila_y += 35;
 }
 
-// 5. SI NO QUEDÓ EN EL TOP 5: Mostrar su posición abajo para desafiarlo
-if (mi_posicion > 5) {
+// 5. Si quedó fuera del Top 5, mostrar su posición abajo
+if (mi_posicion > 5 && !is_undefined(mi_registro)) {
     fila_y += 15;
     draw_set_color(c_orange);
     draw_line(col_pos, fila_y, col_time + 90, fila_y);
@@ -84,21 +88,21 @@ if (mi_posicion > 5) {
     if (string_length(m_sec) < 2) m_sec = "0" + m_sec;
 
     draw_text(col_pos, fila_y, "#" + string(mi_posicion));
-    draw_text(col_nom, fila_y, string(mi_registro.nombre) + " (Tú)");
+    draw_text(col_nom, fila_y, string(mi_registro.nombre) + " (Tu)");
     draw_text(col_pts, fila_y, string(mi_registro.puntos) + " pts");
     draw_text(col_time, fila_y, m_min + ":" + m_sec);
 
     fila_y += 35;
     draw_set_halign(fa_center);
     draw_set_color(c_orange);
-    draw_text(cx, fila_y, "¡Estás en la posición #" + string(mi_posicion) + "! ¡Sigue jugando para entrar al Top 5!");
+    draw_text(cx, fila_y, "Estas en la posicion #" + string(mi_posicion) + "! Sigue jugando para entrar al Top 5!");
 }
 
 // 6. Pie de pantalla
 draw_set_alpha(alpha_texto);
 draw_set_color(c_silver);
 draw_set_halign(fa_center);
-draw_text(cx, gh - 55, "Presiona ENTER para finalizar");
+draw_text(cx, gh - 55, "Presiona ESPACIO o ENTER para finalizar");
 
 // Restaurar configuración gráfica
 draw_set_alpha(1);

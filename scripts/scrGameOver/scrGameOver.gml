@@ -53,7 +53,11 @@ function scrGameOver() {
                 + string(global.vidas_perdidas_nivel)
                 + " | Vidas restantes: 0"
             );
-
+			
+			// Contar la muerte para la penalización en el puntaje final
+			if (!variable_global_exists("muertes")) global.muertes = 0;
+			global.muertes += 1;
+			
             // Evitar registrar dos veces el mismo intento
             global.nivel_actual_log = -1;
 

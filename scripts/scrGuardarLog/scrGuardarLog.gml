@@ -181,6 +181,15 @@ function scrIniciarNivel(_nivel) {
             return;
         }
     }
+	
+
+	// Asegurar que los checkpoints existan antes de leerlos
+	if (!variable_global_exists("estrellas_checkpoint")) global.estrellas_checkpoint = 0;
+	if (!variable_global_exists("aciertos_checkpoint"))  global.aciertos_checkpoint = 0;
+
+	global.estrellas = global.estrellas_checkpoint;
+	global.puntaje   = global.estrellas_checkpoint;
+	global.aciertos  = global.aciertos_checkpoint;
 
     // Asegurar que las vidas esten inicializadas
     if (!variable_global_exists("life")) {
@@ -305,7 +314,10 @@ function scrFinalizarNivel(_nivel) {
         + " | Estrellas obtenidas: "
         + string(_estrellas)
     );
-
+	
+	global.estrellas_checkpoint = global.estrellas;
+	global.aciertos_checkpoint  = global.aciertos;
+	
     // Evitar registrar dos veces el mismo final
     global.nivel_actual_log = -1;
 	
@@ -327,6 +339,7 @@ function scrFinalizarNivel(_nivel) {
         
         // Exportar los logs pendientes a archivo local antes de ir a ranking
         scrExportarLogs();
+		scrEnviarLogsGoogle();
 
         // Ir a la sala del ranking
         room_goto(rRanking);
@@ -351,8 +364,8 @@ function scrEnviarLogsGoogle() {
     }
 
     // URL de la aplicación web de Google Apps Script
-    var _url = "https://script.google.com/macros/s/AKfycbyESKAeucoom3FXUC90HyYy55Jl56nvUuA-cPd9_-Z4PSqodGL-vc4GMVMwTkOpcdU/exec";
-
+    var _url = "https://script.google.com/macros/s/AKfycbxog5LkCEO2fkhwMq-KqUN_JtgmasIt1UOG3I5QkpNS_PhCMb-8pHGtJXq-UVKqM_AH/exec";
+	
     // Reemplazar por la misma clave de Apps Script
     var _clave = "holasoymatusdelaparra";
 

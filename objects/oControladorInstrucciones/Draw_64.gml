@@ -1,3 +1,8 @@
+if (!variable_instance_exists(id, "sprite_instrucciones") || !sprite_exists(sprite_instrucciones)) {
+    exit;
+}
+global.sprite_tutorial_actual = sprite_instrucciones;
+
 draw_set_alpha(0.6);
 draw_set_color(c_black);
 draw_rectangle(0, 0, display_get_gui_width(), display_get_gui_height(), false);

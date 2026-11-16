@@ -5,9 +5,43 @@ hills = layer_get_all_elements("Hills");								// all the hill sprites
 stars = layer_get_all_elements("Stars");								// all the star sprites
 clouds = layer_get_all_elements("Clouds");	
 
-// prueba para los logs 
-global.puntaje = 0;
-global.life = 3;
+// ==========================================
+// REGISTRO INICIAL DEL ESTUDIANTE (LOGIN)
+// ==========================================
+if (!variable_global_exists("rut_jugador")) {
+    var rut_ingresado = "";
+    while (string_trim(rut_ingresado) == "") {
+        rut_ingresado = get_string("Bienvenido(a) a Learn2Math\n\nIngresa tu RUT sin puntos y con guion (ej: 20123456-7):", "");
+    }
+    global.rut_jugador = string_trim(rut_ingresado);
+}
+
+if (!variable_global_exists("nombre_jugador")) {
+    var nom_ingresado = "";
+    while (string_trim(nom_ingresado) == "") {
+        nom_ingresado = get_string("Ingresa tu Nombre o Alias para la Tabla de Clasificacion:", "");
+    }
+    global.nombre_jugador = string_trim(nom_ingresado);
+}
+
+// Sincronizar con el idJugador de telemetría de logs
+global.idJugador = global.rut_jugador;
+
+// Variables de interacción y gamificación (se inicializan una sola vez)
+if (!variable_global_exists("puntaje"))              global.puntaje = 0;
+if (!variable_global_exists("estrellas"))            global.estrellas = 0;
+if (!variable_global_exists("aciertos"))             global.aciertos = 0;
+if (!variable_global_exists("fallos"))               global.fallos = 0;
+if (!variable_global_exists("puntos"))               global.puntos = 0;
+if (!variable_global_exists("life"))                 global.life = 3;
+
+if (!variable_global_exists("muertes"))              global.muertes = 0;
+if (!variable_global_exists("estrellas_checkpoint")) global.estrellas_checkpoint = 0;
+if (!variable_global_exists("aciertos_checkpoint"))  global.aciertos_checkpoint = 0;
+
+if (!variable_global_exists("tiempo_total"))         global.tiempo_total = 0;
+if (!variable_global_exists("timer_activo"))         global.timer_activo = true;
+
 scrIniciarLogs();
 // Iniciar cronometro solamente en salas jugables del nivel 1
 if (room == rLevel1_1 || room == rLevel1_2 || room == rLevel1_3) {
@@ -44,39 +78,6 @@ switch(room){
 		}
 		break;
 }
-
-// ==========================================
-// REGISTRO INICIAL DEL ESTUDIANTE (LOGIN)
-// ==========================================
-if (!variable_global_exists("rut_jugador")) {
-    var rut_ingresado = "";
-    while (string_trim(rut_ingresado) == "") {
-        rut_ingresado = get_string("Bienvenido(a) a Learn2Math\n\nIngresa tu RUT sin puntos y con guion (ej: 20123456-7):", "");
-    }
-    global.rut_jugador = string_trim(rut_ingresado);
-}
-
-if (!variable_global_exists("nombre_jugador")) {
-    var nom_ingresado = "";
-    while (string_trim(nom_ingresado) == "") {
-        nom_ingresado = get_string("Ingresa tu Nombre o Alias para la Tabla de Clasificación:", "");
-    }
-    global.nombre_jugador = string_trim(nom_ingresado);
-}
-
-// Sincronizar con el idJugador de telemetría de logs
-global.idJugador = global.rut_jugador;
-
-// Variables de interacción y gamificación (se inicializan una sola vez)
-if (!variable_global_exists("estrellas"))     global.estrellas = 0;
-if (!variable_global_exists("aciertos"))      global.aciertos = 0;
-if (!variable_global_exists("fallos"))        global.fallos = 0;
-if (!variable_global_exists("puntos"))        global.puntos = 0;
-if (!variable_global_exists("life"))          global.life = 3; // Corazones del juego
-
-// Cronómetro general acumulativo
-if (!variable_global_exists("tiempo_total"))  global.tiempo_total = 0; // En segundos
-if (!variable_global_exists("timer_activo"))  global.timer_activo = true;
 
 // on screen controls
 button_pressed = false;													// flag to see if any button is being pressed

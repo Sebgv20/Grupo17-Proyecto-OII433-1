@@ -1,7 +1,30 @@
+// Dimensiones y posición de los botones de la esquina superior derecha
 var p_ancho = 50;
-var p_alto = 50;
+var p_alto  = 50;
 var p_x = display_get_gui_width() - p_ancho - 20;
 var p_y = 20;
+
+var q_ancho = 50;
+var q_alto  = 50;
+var q_x = p_x - q_ancho - 10;
+var q_y = 20;
+
+// 0. DIBUJAR BOTÓN DE TUTORIAL "?" (A la izquierda de Pausa)
+draw_set_alpha(0.7);
+draw_set_color(c_black);
+draw_rectangle(q_x, q_y, q_x + q_ancho, q_y + q_alto, false);
+
+draw_set_alpha(1.0);
+draw_set_color(c_white);
+draw_set_font(fTahoma24);
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+draw_text(q_x + (q_ancho / 2), q_y + (q_alto / 2), "?");
+
+// Restaurar alineación antes de dibujar el resto
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+
 
 // Borde botón
 draw_set_alpha(0.7);
